@@ -9,6 +9,7 @@
   --success-color: orange;
   --info-color: #96D3DE;
   --transistion: 0.1s;
+  --primary-font: 'Poppins', Helvetica, sans-serif;
 }
 
 html {
@@ -29,6 +30,7 @@ p {
 
 header {
   background-color: var(--primary-color);
+  padding: 20px 0px 20px 0px;
 }
 
 nav {
@@ -41,7 +43,6 @@ nav * {
 }
 
 .container {
-  height: 100vh;
   padding: 30px;
 }
 
@@ -60,6 +61,13 @@ ul li::before {
 
 ul > li {
   padding: 10px;
+}
+
+/* Headings */
+h1 {
+  text-transform: uppercase;
+  color: var(--dark-color);
+  font-family: var(--primary-font);
 }
 
 h2 {

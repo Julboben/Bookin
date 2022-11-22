@@ -1,0 +1,13 @@
+form input {
+    font-family: var(--primary-font);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--muted-color);
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.container {
+    display: block;
+}

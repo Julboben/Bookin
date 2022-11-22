@@ -1,5 +1,6 @@
 /* This is a page! */
 import Button from "./Button"
+import StaticDatePickerLandscape from './StaticDatePickerLandscape';
 
 export default function BookingOverview() {
   return (
@@ -7,6 +8,7 @@ export default function BookingOverview() {
       <h1>
         BookingOverview!
       </h1>
+      <StaticDatePickerLandscape />
       <Button primary title="Mere booking" />
       <Button secondary title="Ny booking" />
     </div>
