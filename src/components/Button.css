@@ -1,0 +1,39 @@
+/* Hvor skal stylingen være når man styler et seperat component? */
+.button {
+  font-family: 'Poppins', Helvetica, sans-serif;
+  font-weight: bold;
+  background-color: var(--alert-color);
+  padding: 10px;
+  width: 100%;
+  font-size: 20px;
+  color: var(--alert-color);
+  border: none;
+  border-radius: 4px;
+  transition: background-color var(--transistion) ease-in-out;
+}
+
+.button-primary {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+}
+
+.button-primary:hover {
+  background-color: #F6D7BA;
+}
+
+.button-primary:active {
+  background-color: var(--primary-color);
+}
+
+.button-secondary {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+.button-secondary:hover {
+  background-color: var(--muted-color);
+}
+
+.button-secondary:active {
+  background-color: var(--primary-color);
+}

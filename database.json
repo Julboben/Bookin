@@ -1,0 +1,15 @@
+{
+    "user": {
+        "id": "1",
+        "email": "jrs@cphbusiness.dk",
+        "firstname": "Jeppe",
+        "surname": "Rosengren Stockmar",
+        "type": "Teacher",
+        "password": "1234",
+        "settings": {
+            "email-receipt": "true",
+            "dark-mode": "false",
+            "confirmation-sound": "true"
+        }
+    }
+}
