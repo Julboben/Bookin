@@ -8,8 +8,14 @@
   --danger-color: orange;
   --success-color: orange;
   --info-color: #96D3DE;
+  --muted-primary-color: #CAE8EE;
   --transistion: 0.1s;
   --primary-font: 'Poppins', Helvetica, sans-serif;
+}
+
+* {
+  /* Targets every element */
+  font-family: var(--primary-font);
 }
 
 html {
@@ -19,48 +25,44 @@ html {
 
 .wrapper {
   max-width: 1200px;
-  background-color: var(--light-color);
   margin-left: auto;
   margin-right: auto;
+}
+
+.content {
+  border-radius: 6px;
+  background-color: var(--light-color);
+  padding: 30px;
+  min-height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.inner-content {
+  width: 100%;
+  align-items: center;
+}
+
+.page-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  width: 100%;
+}
+
+.button-bottom {
+  align-self: flex-end;
+  width: 100%;
 }
 
 p {
   color: var(--dark-color);
 }
 
-header {
-  background-color: var(--primary-color);
-  padding: 20px 0px 20px 0px;
-}
-
-nav {
-  padding: 30px;
-  text-align: center;
-}
-
-nav * {
-  background-color: inherit;
-}
-
-.container {
-  padding: 30px;
-}
-
 ul {
-  list-style: none;    
-}
-
-ul li::before {
-  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-  color: #61DAFB; /* Change the color */
-  font-weight: bold; /* If you want it to be bold */
-  display: inline-block; /* Needed to add space between the bullet and the text */
-  width: 1em; /* Also needed for space (tweak if needed) */
-  margin-left: -1em; /* Also needed for space (tweak if needed) */
-}
-
-ul > li {
-  padding: 10px;
+  list-style: none;
 }
 
 /* Headings */
@@ -68,8 +70,117 @@ h1 {
   text-transform: uppercase;
   color: var(--dark-color);
   font-family: var(--primary-font);
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1;
+  font-weight: 500;
 }
 
 h2 {
   color: var(--dark-color);
+  font-family: var(--primary-font);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+h3 {
+  color: var(--dark-color);
+  font-family: var(--primary-font);
+  font-size: 2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+h4 {
+  color: var(--dark-color);
+  font-family: var(--primary-font);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 0;
+}
+
+.card-title {
+  text-decoration: none;
+  color: var(--dark-color);
+}
+
+.choose-title {
+  text-align: left;
+}
+
+.username {
+  font-family: var(--primary-font);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.your-booking-box {
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid var(--muted-primary-color);
+  background-color: var(--muted-primary-color);
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: var(--transistion);
+  margin: 5px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time-button {
+  font-family: var(--primary-font);
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid var(--muted-color);
+  background-color: transparent;
+  padding: 10px 30px;
+  border-radius: 4px;
+  transition: var(--transistion);
+}
+
+.time-button:hover {
+  background-color: var(--muted-primary-color);
+  border-color: var(--dark-color);
+}
+
+.time-button:active {
+  background-color: var(--primary-color);
+  border-color: var(--dark-color);
+}
+
+.time-button:focus {
+  background-color: var(--primary-color);
+  border-color: var(--dark-color);
+}
+
+.button:active,
+.active {
+  background-color: var(--primary-color);
+  border-color: var(--dark-color);
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 100px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.profile-pic {
+  border-radius: 50px;
+  border: 1px solid transparent;
+}
+
+.clickable {
+  cursor: pointer;
 }

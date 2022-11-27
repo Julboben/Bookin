@@ -1,3 +1,7 @@
+form {
+    width: 100%;
+}
+
 form input {
     font-family: var(--primary-font);
     padding: 10px;
@@ -10,4 +14,12 @@ form input {
 
 .container {
     display: block;
+}
+
+.forgot-text {
+    font-size: 12px;
+    font-family: var(--primary-font);
+    text-decoration: none;
+    float: right;
+    margin-bottom: 20px ;
 }
