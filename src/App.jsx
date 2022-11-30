@@ -25,7 +25,6 @@ function App() {
           <div className="content">
             <Routes>
               <Route
-                index
                 path="/Bookin"
                 element={
                   <LoginPage
