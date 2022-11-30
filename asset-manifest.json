@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Bookin/static/css/main.cff7ab84.css",
+    "main.js": "/Bookin/static/js/main.0786a6d0.js",
+    "static/js/787.22cf53f4.chunk.js": "/Bookin/static/js/787.22cf53f4.chunk.js",
+    "static/media/thumbnailBooking.png": "/Bookin/static/media/thumbnailBooking.2ecb9f3551285dd9daad.png",
+    "static/media/thumbnailOverview.png": "/Bookin/static/media/thumbnailOverview.5a02633ecd0f05aba8c1.png",
+    "static/media/thumbnailSettings.png": "/Bookin/static/media/thumbnailSettings.c9d966ed5da476cd7893.png",
+    "static/media/loading-bookin.gif": "/Bookin/static/media/loading-bookin.a261d5c307cee43d57d2.gif",
+    "static/media/bookin-logo.svg": "/Bookin/static/media/bookin-logo.a30594cae9793495779d16cfcedf5001.svg",
+    "index.html": "/Bookin/index.html",
+    "main.cff7ab84.css.map": "/Bookin/static/css/main.cff7ab84.css.map",
+    "main.0786a6d0.js.map": "/Bookin/static/js/main.0786a6d0.js.map",
+    "787.22cf53f4.chunk.js.map": "/Bookin/static/js/787.22cf53f4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cff7ab84.css",
+    "static/js/main.0786a6d0.js"
+  ]
+}
