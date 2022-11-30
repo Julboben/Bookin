@@ -111,7 +111,7 @@ export default function BookingPage({ title, setTitle, setBookings }) {
             <IconHelp />
             <BasicSelect
               setChoosenRoom={setChoosenRoom}
-              label="Lokale"
+              label="Vælg lokale"
               room1="Lokale CL-154"
               room2="Lokale CL-201"
               room3="Lokale CL-204"

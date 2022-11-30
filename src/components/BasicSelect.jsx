@@ -9,14 +9,31 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
 import WindowIcon from '@mui/icons-material/Window';
 import AirplayIcon from '@mui/icons-material/Airplay';
+import { transformToArray } from '../firebase-utils';
 
 export default function BasicSelect( props ) {
   const [room, setRoom] = React.useState('');
+  const [rooms, setRooms] = React.useState([]);
 
   const handleChange = (event) => {
     setRoom(event.target.value);
     props.setChoosenRoom(event.target.value);
   };
+
+  React.useEffect(() => {
+    async function getData() {
+      const url = "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app/rooms.json";
+      const response = await fetch (url);
+      
+      if (response.status === 200) {
+        const body = await response.json()
+        const asArray = transformToArray(body)
+        /* console.log(asArray); */
+        setRooms(asArray)
+      }
+    };
+    getData();
+  }, []);
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -29,10 +46,11 @@ export default function BasicSelect( props ) {
           label={props.label}
           onChange={handleChange}
         >
-          <MenuItem value="cl-154">{props.room1}&nbsp;<NightlightRoundIcon fontSize="10" className="help-icon" /><AirplayIcon fontSize="10" className="help-icon" /><PeopleAltIcon fontSize="10" className="help-icon" /><span className="help-text">30</span></MenuItem>
-          <MenuItem value="cl-201">{props.room2}&nbsp;<AirplayIcon fontSize="10" className="help-icon" /><PeopleAltIcon fontSize="10" className="help-icon" /><span className="help-text">10</span></MenuItem>
-          <MenuItem value="cl-204">{props.room3}&nbsp;<AirplayIcon fontSize="10" className="help-icon" /><WindowIcon fontSize="10" className="help-icon" /><PeopleAltIcon fontSize="10" className="help-icon" /><span className="help-text">20</span></MenuItem>
-          <MenuItem value="cl-311">{props.room4}&nbsp;<WindowIcon fontSize="10" className="help-icon" /></MenuItem>
+          {rooms.map((room) => {
+            return (
+              <MenuItem key={room.id} value={room.room}><span>{room.room.toUpperCase()}&nbsp;</span>{room.proj && <AirplayIcon fontSize="10" className="help-icon" />}{room.win && <WindowIcon fontSize="10" className="help-icon" />}{room.dark && <NightlightRoundIcon fontSize="10" className="help-icon" />}{room.max && <><PeopleAltIcon fontSize="10" className="help-icon" /><span className='help-text'>{room.max}</span></>}</MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
     </Box>

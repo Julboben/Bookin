@@ -12,7 +12,7 @@ export default function LoginPage( {setTitle, title, setUsername} ) {
   return (
     <>
       <h2 className="page-subtitle">Velkommen til Bookin</h2>
-      <p className="page-subtitle">Log venligst ind med email og password.</p>
+      <p className="page-subtitle">Log venligst ind med e-mail og password.</p>
       <div className="inner-content">
         <LoginForm setUsername={setUsername} />
       </div>

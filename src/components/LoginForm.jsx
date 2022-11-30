@@ -72,6 +72,8 @@ export default function LoginForm({ setUsername }) {
           setUsername("Mathias");
         } else if (username === "jrs@cphbusiness.dk") {
           setUsername("Jeppe");
+        } else if (username === "underviser@cphbusiness.dk") {
+          setUsername("Hr. Lærer");
         }
 
         navigate("/home");
