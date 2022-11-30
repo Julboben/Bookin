@@ -26,7 +26,7 @@ function App() {
             <Routes>
               <Route
                 index
-                path="/"
+                path="/Bookin"
                 element={
                   <LoginPage
                     title="Log ind"
