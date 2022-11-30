@@ -70,13 +70,15 @@ export default function LoginForm({ setUsername }) {
           setUsername("Christian");
         } else if (username === "mtnl@cphbusiness.dk") {
           setUsername("Mathias");
+        } else if (username === "jrs@cphbusiness.dk") {
+          setUsername("Jeppe");
         }
 
         navigate("/home");
       } else {
         setIsSnackbarOpen(true);
         setSnackMessage(
-          "Dit brugernavn eller password er ugyldigt. Kontakt venligst din administrator."
+          "Dit brugernavn eller password er ugyldigt. Prøv venligst igen."
         );
         setSnackbarSeverity("error");
       }

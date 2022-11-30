@@ -3,6 +3,6 @@ import './BookinButton.css';
 
 export default function Button(props) {
     return (
-        <button onClick={props.onClick} className={"button " + (props.primary ? "button-primary" : "" || props.secondary ? "button-secondary" : "")}>{props.title}</button>
+        <button onClick={props.onClick} className={"clickable button " + (props.primary ? "button-primary" : "" || props.secondary ? "button-secondary" : "")}>{props.title}</button>
     )
 };

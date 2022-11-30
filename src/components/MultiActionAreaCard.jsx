@@ -6,20 +6,30 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function MultiActionAreaCard(props) {
+export default function MultiActionAreaCard({ img, alt, link, title, backgroundColor }) {
   return (
     <Card sx={{ width: 345 }}>
       <CardActionArea>
-        <Link className="card-title" to={props.link}>
+        <Link className="card-title" to={link}>
           <CardMedia
+            style={{ backgroundColor: {backgroundColor} }}
             component="img"
             height="140"
-            image={props.img}
-            alt={props.alt}
+            image={img}
+            alt={alt}
           />
-          <CardContent style={{backgroundColor:"var(--muted-color)"}}>
-            <Typography style={{height:"100px", display:"flex", justifyContent:"center", alignItems:"center"}} gutterBottom component="div">
-              <h3>{props.title}</h3>
+          <CardContent style={{ backgroundColor: "var(--muted-color)" }}>
+            <Typography
+              style={{
+                height: "100px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              gutterBottom
+              component="div"
+            >
+              <h3>{title}</h3>
             </Typography>
           </CardContent>
         </Link>

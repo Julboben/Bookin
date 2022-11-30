@@ -137,7 +137,7 @@ h4 {
   background-color: transparent;
   padding: 10px 30px;
   border-radius: 4px;
-  transition: var(--transistion);
+  transition: all var(--transistion);
 }
 
 .time-button:hover {
@@ -183,4 +183,42 @@ h4 {
 
 .clickable {
   cursor: pointer;
+}
+
+.css-169iwlq-MuiCalendarPicker-root {
+  width: 100% !important;
+}
+
+.css-nk89i7-MuiPickersCalendarHeader-root {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.link {
+  color: var(--secondary-color);
+}
+
+.min-amount {
+  font-size: 10px;
+}
+
+.help-text {
+  font-size: 12px;
+}
+
+.help-icon {
+  color: #F89B30;
+  padding-right: 5px;
+}
+
+.help-box {
+  display: flex;
+  align-items: center;
+}
+
+.icon-help-component {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+
 }

@@ -4,6 +4,7 @@ import ProfileHeader from "./ProfileHeader";
 import { Link } from "react-router-dom";
 
 export default function TheHeader({ title, username }) {
+
   return (
     <header>
       <div className="row" style={{alignItems:"flex-end"}}>
@@ -19,7 +20,7 @@ export default function TheHeader({ title, username }) {
           </Link>
         </div>
         <div className="column">
-          <ProfileHeader username={username} />
+          {username && <ProfileHeader username={username} />}
         </div>
       </div>
     </header>

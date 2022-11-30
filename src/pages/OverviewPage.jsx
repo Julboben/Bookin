@@ -19,8 +19,7 @@ export default function BookingOverview({
   }, []);
 
   const navigate = useNavigate();
-  /* Forced delay 1 second */
-  const delayInMilliseconds = 1000;
+
   const url =
     "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app/bookings.json";
   const [isLoading, setIsLoading] = useState(false);
@@ -44,16 +43,21 @@ export default function BookingOverview({
       setIsLoading(false);
     }
     /* Runs foced delay before getData */
-    setTimeout(function() {
+    /* Forced delay 3 seconds */
+    const delayInMilliseconds = 3000;
+    setTimeout(function () {
       getData();
     }, delayInMilliseconds);
-
   }, []);
 
   return (
     <>
       {isLoading ? (
-            <img style={{margin:"auto", alignSelf:"center"}} width={"200px"} src={LoadingBookin} />
+        <img
+          style={{ margin: "auto", alignSelf: "center" }}
+          width={"200px"}
+          src={LoadingBookin}
+        />
       ) : (
         <div className="row">
           <div className="column">
@@ -62,9 +66,23 @@ export default function BookingOverview({
           <div className="column">
             <h4 className="choose-title">Mine bookninger</h4>
             {bookings.map((booking) => {
-              return <YourBookingBox key={booking.id} room={booking.room} id={booking.id} date={booking.date} time={booking.time} />;
+              return (
+                <YourBookingBox
+                  key={booking.id}
+                  room={booking.room}
+                  id={booking.id}
+                  date={booking.date}
+                  time={booking.time}
+                />
+              );
             })}
-            {isError && <p> Der er sket en uventet fejl med indlæsningen af dine bookninger. Prøv igen senere.</p>}
+            {isError && (
+              <p>
+                {" "}
+                Der er sket en uventet fejl med indlæsningen af dine bookninger.
+                Prøv igen senere.
+              </p>
+            )}
           </div>
         </div>
       )}
