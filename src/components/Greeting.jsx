@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import WbTwilightIcon from '@mui/icons-material/WbTwilight';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import NightlightIcon from '@mui/icons-material/Nightlight';
+import { Avatar } from "@mui/material";
 
-const morning = <WbTwilightIcon style={{color: "var(--secondary-color)"}} />;
-const noon = <LightModeIcon style={{color: "var(--secondary-color)"}} />;
-const afternoon = <WbSunnyIcon style={{color: "var(--secondary-color)"}} />;
-const night = <NightlightIcon style={{color: "var(--secondary-color)"}} />;
+const morning = <WbTwilightIcon />;
+const noon = <LightModeIcon />;
+const afternoon = <WbSunnyIcon />;
+const night = <NightlightIcon />;
 
-export default function Greeting() {
+export default function Greeting( {username} ) {
   const [helloText, setHelloText] = useState("");
-  const [helloTextColor, setHelloTextColor] = useState("");
   const [emoji, setEmoji] = useState("");
 
-  useEffect(() => {
+  /* useLayoutEffect only runs on initial render */
+  useLayoutEffect(() => {
     const date = new Date();
     const currentHour = date.getHours();
     /*       console.log(currentHour) */
@@ -32,5 +33,5 @@ export default function Greeting() {
       setEmoji(night);
     }
   }, []);
-  return <><span style={{paddingRight:"10px"}}>{emoji}</span><span>{helloText}</span></>;
+  return <><span style={{paddingRight:"10px"}}><Avatar sx={{ bgcolor: "var(--success-color)", width: 34, height: 34 }}>{emoji}</Avatar></span><span>{helloText},&nbsp;{username}!</span></>;
 }

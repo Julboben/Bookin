@@ -5,6 +5,10 @@ import { useEffect } from "react";
 import thumbnailOverview from "../assets/thumbnailOverview.png";
 import thumbnnailBooking from "../assets/thumbnailBooking.png";
 import thumbnailSettings from "../assets/thumbnailSettings.png";
+import flag from "../assets/flag.svg";
+import setting from "../assets/setting.svg";
+import calendar from "../assets/calendar.svg";
+import { Skeleton } from "@mui/material";
 
 export default function HomePage({ setTitle, title, username }) {
   useEffect(() => {
@@ -14,13 +18,16 @@ export default function HomePage({ setTitle, title, username }) {
   return (
     <>
       <h2 className="page-subtitle">
-        <Greeting />, {username}! {/* <TagFacesIcon /> */}
+        <Greeting username={username} />
       </h2>
 
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "20px",
+          alignContent: "center",
         }}
         className="inner-content"
       >
@@ -29,21 +36,24 @@ export default function HomePage({ setTitle, title, username }) {
           link="/overview"
           title="Aktuelle bookninger"
           alt="aktuelle bookninger"
-          img={thumbnailOverview}
+          img={flag}
+          textColor="var(--dark-color)"
         />
         <MultiActionAreaCard
           backgroundColor="var(--primary-color)"
           link="/booking"
           title="Ny booking"
           alt="ny bookning"
-          img={thumbnnailBooking}
+          img={calendar}
+          textColor="var(--dark-color)"
         />
         <MultiActionAreaCard
           backgroundColor="var(--dark-color)"
           link="/settings"
           title="Dine Indstillinger"
           alt="ny bookning"
-          img={thumbnailSettings}
+          img={setting}
+          textColor="var(--light-color)"
         />
       </div>
     </>

@@ -3,6 +3,8 @@ import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import useSound from "use-sound";
+import dingSfx from "../assets/switch.mp3";
 
 const AntSwitch = styled(Switch)(({ theme }) => ({
   width: 28,
@@ -50,10 +52,14 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 
 export default function BookinSwitch({ leftValue, rightValue, checked, title }) {
   const [isChecked, setIsChecked] = React.useState(true);
+  const [play] = useSound(dingSfx);
 
   const toggleChange = () => {
     setIsChecked(current => !current);
     console.log(title + " er nu: " + isChecked);
+    /* Plays useSound */
+    play()
+
   };
 
   return (

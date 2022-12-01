@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useSound from "use-sound";
 import BasicSelect from "../components/BasicSelect";
 import BookinButton from "../components/BookinButton";
 import IconHelp from "../components/IconHelp";
 import AlertComponenet from "../components/PositionedSnackbar";
 import SubComponentsPickers from "../components/SubComponentsPickers";
 import TimeButton from "../components/TimeButton";
+import dingSfx from "../assets/ding.mp3";
+import InfoIcon from "@mui/icons-material/Info";
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { Tooltip } from "@mui/material";
 
 export default function BookingPage({ title, setTitle, setBookings }) {
   /* Sets title */
@@ -32,11 +37,17 @@ export default function BookingPage({ title, setTitle, setBookings }) {
   const [choosenDate, setChoosenDate] = useState("");
   const [choosenTime, setChoosenTime] = useState("");
   const [choosenRoom, setChoosenRoom] = useState("");
+  const [play] = useSound(dingSfx);
 
   const handleClick = async () => {
     /* Add username to this at some point */
     /* Makes an object with the choosen options */
-    let booking = { date: choosenDate, time: choosenTime, room: choosenRoom };
+    let booking = {
+      date: choosenDate,
+      time: choosenTime,
+      room: choosenRoom,
+      id: "",
+    };
     /* console.log(booking); */
 
     /* Check if everything is filled out */
@@ -51,13 +62,17 @@ export default function BookingPage({ title, setTitle, setBookings }) {
         setSnackMessage("Vælg venligst både et tidspunkt og lokale.");
       }
     } else {
+      /* Plays useSound */
+      play();
       const response = await fetch(url, {
         method: "POST",
         body: JSON.stringify(booking),
       });
       const result = response.json();
-      /* console.log(result) */
+      console.log(result);
       booking.id = result.name;
+      booking.key = result.name;
+      console.log("Document written with ID: ", booking.id);
       setBookings((previousValue) => {
         return [...previousValue, booking];
       });
@@ -105,18 +120,16 @@ export default function BookingPage({ title, setTitle, setBookings }) {
             </div>
           </div>
           <div>
-            <h4 style={{ textAlign: "left", margin: "40px 0px" }}>
-              Ledige lokaler
-            </h4>
-            <IconHelp />
-            <BasicSelect
-              setChoosenRoom={setChoosenRoom}
-              label="Vælg lokale"
-              room1="Lokale CL-154"
-              room2="Lokale CL-201"
-              room3="Lokale CL-204"
-              room4="Lokale CL-311"
-            />
+            <div style={{display:"flex", alignItems:"center", gap:"5px"}}>
+              <h4 style={{ textAlign: "left", margin: "40px 0px" }}>
+                Ledige lokaler
+              </h4>
+              <Tooltip title={<IconHelp />}>
+                <HelpOutlineIcon fontSize="small" />
+              </Tooltip>
+            </div>
+
+            <BasicSelect setChoosenRoom={setChoosenRoom} label="Vælg lokale" />
           </div>
         </div>
       </div>
@@ -131,7 +144,7 @@ export default function BookingPage({ title, setTitle, setBookings }) {
         <BookinButton
           onClick={() => navigate("/home")}
           secondary
-          title="Hjem"
+          title="Fortryd"
         />
       </div>
     </>

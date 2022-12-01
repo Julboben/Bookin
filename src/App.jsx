@@ -25,7 +25,7 @@ function App() {
           <div className="content">
             <Routes>
               <Route
-                path="/Bookin"
+                path="/bookin"
                 element={
                   <LoginPage
                     title="Log ind"

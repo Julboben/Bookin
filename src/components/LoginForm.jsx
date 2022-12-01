@@ -23,7 +23,6 @@ export default function LoginForm({ setUsername }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   const handleMail = (event) => {
@@ -73,7 +72,7 @@ export default function LoginForm({ setUsername }) {
         } else if (username === "jrs@cphbusiness.dk") {
           setUsername("Jeppe");
         } else if (username === "underviser@cphbusiness.dk") {
-          setUsername("Hr. Lærer");
+          setUsername("Underviser");
         }
 
         navigate("/home");

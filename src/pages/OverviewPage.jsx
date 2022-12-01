@@ -1,11 +1,11 @@
-/* This is a page! */
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BookinButton from "../components/BookinButton";
 import SubComponentsPickers from "../components/SubComponentsPickers";
 import LoadingBookin from "../components/loading-bookin.gif";
 import { transformToArray } from "../firebase-utils";
 import YourBookingBox from "../components/YourBookingBox";
+import { CircularProgress } from "@mui/material";
 
 export default function BookingOverview({
   title,
@@ -26,7 +26,7 @@ export default function BookingOverview({
   const [isError, setIsError] = useState(false);
   const [choosenDate, setChoosenDate] = useState("");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setIsLoading(true);
 
     async function getData() {
@@ -44,7 +44,7 @@ export default function BookingOverview({
     }
     /* Runs foced delay before getData */
     /* Forced delay 3 seconds */
-    const delayInMilliseconds = 3000;
+    const delayInMilliseconds = 1000;
     setTimeout(function () {
       getData();
     }, delayInMilliseconds);
@@ -53,11 +53,14 @@ export default function BookingOverview({
   return (
     <>
       {isLoading ? (
-        <img
-          style={{ margin: "auto", alignSelf: "center" }}
-          width={"200px"}
-          src={LoadingBookin}
-        />
+        <div style={{marginRight:"auto", marginLeft:"auto", alignSelf:"center"}}>
+          <img
+            style={{ margin: "auto", alignSelf: "center" }}
+            width={"200px"}
+            src={LoadingBookin}
+          />
+          <p>Loading...</p>
+        </div>
       ) : (
         <div className="row">
           <div className="column">
@@ -68,9 +71,8 @@ export default function BookingOverview({
             {bookings.map((booking) => {
               return (
                 <YourBookingBox
-                  key={booking.id}
-                  room={booking.room}
                   id={booking.id}
+                  room={booking.room}
                   date={booking.date}
                   time={booking.time}
                 />
@@ -78,7 +80,6 @@ export default function BookingOverview({
             })}
             {isError && (
               <p>
-                {" "}
                 Der er sket en uventet fejl med indlæsningen af dine bookninger.
                 Prøv igen senere.
               </p>

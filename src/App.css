@@ -3,7 +3,7 @@
   --primary-color: #96D3DE;
   --secondary-color: #F89B30;
   --light-color: white;
-  --dark-color: #282D35;
+  --dark-color: #3F3F3F;
   --muted-color: #E6E7E8;
   --danger-color: orange;
   --success-color: orange;
@@ -16,6 +16,10 @@
 * {
   /* Targets every element */
   font-family: var(--primary-font);
+}
+
+body {
+  color: var(--dark-color);
 }
 
 html {
@@ -86,9 +90,10 @@ h2 {
 h3 {
   color: var(--dark-color);
   font-family: var(--primary-font);
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 500;
   text-transform: uppercase;
+  line-height: 2.4rem;
 }
 
 h4 {
@@ -204,10 +209,11 @@ h4 {
 
 .help-text {
   font-size: 12px;
+  padding-left: 6px;
 }
 
 .help-icon {
-  color: #F89B30;
+  color: var(--secondary-color);
   padding-right: 5px;
 }
 
@@ -219,6 +225,11 @@ h4 {
 .icon-help-component {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 10px;
+  flex-direction: column;
+  gap: 10px ;
+  padding: 10px;
+}
 
+.select-room-name {
+  padding-right: 10px;
 }
