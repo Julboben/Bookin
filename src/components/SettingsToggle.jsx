@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import BookinSwitch from "./BookinSwitch";
 
 export default function SettingsToggle({
-  title,
+  name,
   subTitle,
   rightValue,
   leftValue,
@@ -18,11 +17,11 @@ export default function SettingsToggle({
         }}
       >
         <div style={{ textAlign: "left", paddingRight: "50px" }}>
-          <h4>{title}</h4>
+          <h4>{name}</h4>
           <p>{subTitle}</p>
         </div>
         <BookinSwitch
-          title={title}
+          name={name}
           checked={checked}
           rightValue={rightValue}
           leftValue={leftValue}

@@ -3,16 +3,20 @@ import "./LoginPage.css";
 import LoginForm from "../components/LoginForm";
 import { useEffect, useState } from "react";
 
-export default function LoginPage( {setTitle, title, setUsername} ) {
-
+export default function LoginPage({ setTitle, title, setUsername }) {
   useEffect(() => {
-    setTitle(title)
+    setTitle(title);
   }, []);
 
   return (
     <>
-      <h2 className="page-subtitle">Velkommen til Bookin</h2>
-      <p className="page-subtitle">Log venligst ind med e-mail og password.</p>
+      <div style={{marginLeft:"auto", marginRight:"auto"}}>
+        <h2>Velkommen til Bookin!</h2>
+        <h4>
+          Et bookingsystem udviklet specielt til dig som underviser.
+        </h4>
+      </div>
+      <p className="page-subtitle">Log venligst ind med din skole e-mail og password.</p>
       <div className="inner-content">
         <LoginForm setUsername={setUsername} />
       </div>

@@ -50,13 +50,13 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-export default function BookinSwitch({ leftValue, rightValue, checked, title }) {
-  const [isChecked, setIsChecked] = React.useState(true);
+export default function BookinSwitch({ leftValue, rightValue, checked, name }) {
+    const [isChecked, setIsChecked] = React.useState(true);
   const [play] = useSound(dingSfx);
 
-  const toggleChange = () => {
+  const handleChange = () => {
     setIsChecked(current => !current);
-    console.log(title + " er nu: " + isChecked);
+    console.log(name + " er nu: " + isChecked);
     /* Plays useSound */
     play()
 
@@ -66,9 +66,11 @@ export default function BookinSwitch({ leftValue, rightValue, checked, title }) 
     <Stack direction="row" spacing={1} alignItems="center">
       <Typography>{leftValue}</Typography>
       <AntSwitch
-        onChange={toggleChange}
+        onChange={handleChange}
         checked={isChecked}
         inputProps={{ "aria-label": "ant design" }}
+        value={isChecked}
+        name={name}
       />
       <Typography>{rightValue}</Typography>
     </Stack>

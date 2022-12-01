@@ -18,31 +18,32 @@ export default function SettingsPage({ title, setTitle }) {
     <>
       <div style={{width:"100%"}}>
         <SettingsToggle
-          title="Sprog"
+          name="Sprog"
           subTitle="Vælg mellem dansk eller engelsk."
           rightValue="DK"
           leftValue="ENG"
         />
         <Divider />
         <SettingsToggle
-          title="Lyde"
+          name="Lyde"
           subTitle="Slå applikationslyde til eller fra."
           rightValue="TIL"
           leftValue="FRA"
         />
         <Divider />
         <SettingsToggle
-          title="E-mail kvittering"
+          name="E-mail kvittering"
           subTitle="Modtag en e-mail kvittering ved bookning."
           rightValue="TIL"
           leftValue="FRA"
         />
         <Divider />
         <SettingsToggle
-          title="Dark mode"
+          name="Dark mode"
           subTitle="Slå dark mode til eller fra."
           rightValue="TIL"
           leftValue="FRA"
+          checked={false}
         />
       </div>
       <div className="button-bottom">

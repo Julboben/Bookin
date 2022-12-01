@@ -9,8 +9,10 @@ import SubComponentsPickers from "../components/SubComponentsPickers";
 import TimeButton from "../components/TimeButton";
 import dingSfx from "../assets/ding.mp3";
 import InfoIcon from "@mui/icons-material/Info";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { Tooltip } from "@mui/material";
+import HelpIcon from '@mui/icons-material/Help';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import { Avatar, Tooltip } from "@mui/material";
 
 export default function BookingPage({ title, setTitle, setBookings }) {
   /* Sets title */
@@ -32,11 +34,12 @@ export default function BookingPage({ title, setTitle, setBookings }) {
 
   const navigate = useNavigate();
   const url =
-    "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app/bookings.json";
+    "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app";
 
   const [choosenDate, setChoosenDate] = useState("");
   const [choosenTime, setChoosenTime] = useState("");
   const [choosenRoom, setChoosenRoom] = useState("");
+  const [choosenId, setChoosenId] = useState("");
   const [play] = useSound(dingSfx);
 
   const handleClick = async () => {
@@ -46,7 +49,6 @@ export default function BookingPage({ title, setTitle, setBookings }) {
       date: choosenDate,
       time: choosenTime,
       room: choosenRoom,
-      id: "",
     };
     /* console.log(booking); */
 
@@ -64,7 +66,7 @@ export default function BookingPage({ title, setTitle, setBookings }) {
     } else {
       /* Plays useSound */
       play();
-      const response = await fetch(url, {
+      const response = await fetch(url + "/bookings" + ".json", {
         method: "POST",
         body: JSON.stringify(booking),
       });
@@ -72,7 +74,7 @@ export default function BookingPage({ title, setTitle, setBookings }) {
       console.log(result);
       booking.id = result.name;
       booking.key = result.name;
-      console.log("Document written with ID: ", booking.id);
+      /* console.log("Document written with ID: ", booking.id); */
       setBookings((previousValue) => {
         return [...previousValue, booking];
       });
@@ -120,16 +122,24 @@ export default function BookingPage({ title, setTitle, setBookings }) {
             </div>
           </div>
           <div>
-            <div style={{display:"flex", alignItems:"center", gap:"5px"}}>
+            <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
               <h4 style={{ textAlign: "left", margin: "40px 0px" }}>
                 Ledige lokaler
               </h4>
               <Tooltip title={<IconHelp />}>
-                <HelpOutlineIcon fontSize="small" />
+                <Avatar
+                  sx={{
+                    bgcolor: "var(--success-color)",
+                    width: 24,
+                    height: 24,
+                    cursor:"help"
+                  }}
+                >
+                  <QuestionMarkIcon sx={{ fontSize: 16 }} />
+                </Avatar>
               </Tooltip>
             </div>
-
-            <BasicSelect setChoosenRoom={setChoosenRoom} label="Vælg lokale" />
+            <BasicSelect setChoosenId={setChoosenId} setChoosenRoom={setChoosenRoom} label="Vælg lokale" />
           </div>
         </div>
       </div>
