@@ -1,14 +1,15 @@
 import "./TheHeader.css";
 import bookinLogo from "./bookin-logo.svg";
-import ProfileHeader from "./ProfileHeader";
+import AvatarName from "./AvatarName";
 import { Link } from "react-router-dom";
 
 export default function TheHeader({ title, username }) {
+
   return (
     <header>
       <div className="row" style={{ alignItems: "flex-end" }}>
         <div className="column">
-          {username && <ProfileHeader username={username} />}
+          {username && <AvatarName username={username} />}
         </div>
         <div className="column">
           {/* Conditional rendering. Trueish or falseish */}

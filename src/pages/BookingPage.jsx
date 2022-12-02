@@ -9,10 +9,12 @@ import SubComponentsPickers from "../components/SubComponentsPickers";
 import TimeButton from "../components/TimeButton";
 import dingSfx from "../assets/ding.mp3";
 import InfoIcon from "@mui/icons-material/Info";
-import HelpIcon from '@mui/icons-material/Help';
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import HelpIcon from "@mui/icons-material/Help";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { Avatar, Tooltip } from "@mui/material";
+import { transformToArray } from "../firebase-utils";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 export default function BookingPage({ title, setTitle, setBookings }) {
   /* Sets title */
@@ -39,8 +41,26 @@ export default function BookingPage({ title, setTitle, setBookings }) {
   const [choosenDate, setChoosenDate] = useState("");
   const [choosenTime, setChoosenTime] = useState("");
   const [choosenRoom, setChoosenRoom] = useState("");
-  const [choosenId, setChoosenId] = useState("");
   const [play] = useSound(dingSfx);
+
+  const validateExistingBooking = async () => {
+    // Starte med at kigge på alle de eksisterende.
+    // bookings.filter()
+    const response = await fetch(url + "/bookings" + ".json");
+    const body = await response.json();
+    /* console.log(body) */
+    const bookingArray = Object.values(body);
+    /* console.log(bookingArray) */
+
+    const matchingBookings = bookingArray.filter( booking => {
+      return (booking.date === choosenDate) &&
+      (booking.room === choosenRoom) &&
+      (booking.time === choosenTime)
+    })
+
+    return (matchingBookings.length > 0)    
+
+  };
 
   const handleClick = async () => {
     /* Add username to this at some point */
@@ -50,7 +70,6 @@ export default function BookingPage({ title, setTitle, setBookings }) {
       time: choosenTime,
       room: choosenRoom,
     };
-    /* console.log(booking); */
 
     /* Check if everything is filled out */
     if (choosenDate === "" || choosenTime === "" || choosenRoom === "") {
@@ -64,30 +83,38 @@ export default function BookingPage({ title, setTitle, setBookings }) {
         setSnackMessage("Vælg venligst både et tidspunkt og lokale.");
       }
     } else {
-      /* Plays useSound */
-      play();
-      const response = await fetch(url + "/bookings" + ".json", {
-        method: "POST",
-        body: JSON.stringify(booking),
-      });
-      const result = response.json();
-      console.log(result);
-      booking.id = result.name;
-      booking.key = result.name;
-      /* console.log("Document written with ID: ", booking.id); */
-      setBookings((previousValue) => {
-        return [...previousValue, booking];
-      });
-      setIsSnackbarOpen(true);
-      setSnackMessage(
-        "Din bookning er bekræftet. Du viderestilles til dine bookninger."
-      );
-      setSnackbarSeverity("success");
+      if  ( await validateExistingBooking(booking)) {
+        setIsSnackbarOpen(true);
+        setSnackMessage(
+          "Lokalet på dette dato og tidspunkt er desværre allerede booket."
+        );
+        setSnackbarSeverity("error");
+      } else {
+        /* Plays useSound */
+        play();
+        const response = await fetch(url + "/bookings" + ".json", {
+          method: "POST",
+          body: JSON.stringify(booking),
+        });
+        const result = response.json();
+        /* console.log(result); */
+        booking.id = result.name;
+        booking.key = result.name;
+        /* console.log("Document written with ID: ", booking.id); */
+        setBookings((previousValue) => {
+          return [...previousValue, booking];
+        });
+        setIsSnackbarOpen(true);
+        setSnackMessage(
+          "Din bookning er bekræftet. Du viderestilles til dine bookninger."
+        );
+        setSnackbarSeverity("success");
 
-      const delayInMilliseconds = 1000;
-      setTimeout(function () {
-        navigate("/overview");
-      }, delayInMilliseconds);
+        const delayInMilliseconds = 1000;
+        setTimeout(function () {
+          navigate("/overview");
+        }, delayInMilliseconds);
+      }
     }
   };
 
@@ -132,14 +159,14 @@ export default function BookingPage({ title, setTitle, setBookings }) {
                     bgcolor: "var(--success-color)",
                     width: 24,
                     height: 24,
-                    cursor:"help"
+                    cursor: "help",
                   }}
                 >
                   <QuestionMarkIcon sx={{ fontSize: 16 }} />
                 </Avatar>
               </Tooltip>
             </div>
-            <BasicSelect setChoosenId={setChoosenId} setChoosenRoom={setChoosenRoom} label="Vælg lokale" />
+            <BasicSelect setChoosenRoom={setChoosenRoom} label="Vælg lokale" />
           </div>
         </div>
       </div>

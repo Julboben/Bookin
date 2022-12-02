@@ -5,7 +5,6 @@ import SubComponentsPickers from "../components/SubComponentsPickers";
 import LoadingBookin from "../components/loading-bookin.gif";
 import { transformToArray } from "../firebase-utils";
 import YourBookingBox from "../components/YourBookingBox";
-import { CircularProgress } from "@mui/material";
 
 export default function BookingOverview({
   title,
@@ -59,7 +58,7 @@ export default function BookingOverview({
             width={"200px"}
             src={LoadingBookin}
           />
-          <p>Loading...</p>
+          <div class="loader">Loading<span class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span></div>
         </div>
       ) : (
         <div className="row">
