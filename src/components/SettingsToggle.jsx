@@ -6,6 +6,9 @@ export default function SettingsToggle({
   rightValue,
   leftValue,
   checked,
+  id,
+  activeUser,
+  setActiveUser
 }) {
   return (
     <>
@@ -21,6 +24,9 @@ export default function SettingsToggle({
           <p>{subTitle}</p>
         </div>
         <BookinSwitch
+          setActiveUser={setActiveUser}
+          activeUser={activeUser}
+          id={id}
           name={name}
           checked={checked}
           rightValue={rightValue}

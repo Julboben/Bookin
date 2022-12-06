@@ -1,16 +1,11 @@
 import MultiActionAreaCard from "../components/MultiActionAreaCard";
 import Greeting from "../components/Greeting";
-import TagFacesIcon from "@mui/icons-material/TagFaces";
 import { useEffect } from "react";
-import thumbnailOverview from "../assets/thumbnailOverview.png";
-import thumbnnailBooking from "../assets/thumbnailBooking.png";
-import thumbnailSettings from "../assets/thumbnailSettings.png";
 import flag from "../assets/flag.svg";
 import setting from "../assets/setting.svg";
 import calendar from "../assets/calendar.svg";
-import { Skeleton } from "@mui/material";
 
-export default function HomePage({ setTitle, title, username }) {
+export default function HomePage({ setTitle, title, firstname }) {
   useEffect(() => {
     setTitle(title);
   }, []);
@@ -18,7 +13,7 @@ export default function HomePage({ setTitle, title, username }) {
   return (
     <>
       <h2 className="page-subtitle">
-        <Greeting username={username} />
+        <Greeting firstname={firstname} />
       </h2>
 
       <div

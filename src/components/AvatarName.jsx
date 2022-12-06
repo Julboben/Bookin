@@ -2,7 +2,7 @@ import { Avatar, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function AvatarName({ username }) {
+export default function AvatarName({ firstname }) {
   /* const navigate = useNavigate(); */
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -31,11 +31,11 @@ export default function AvatarName({ username }) {
         {/* <img className="profile-pic" src={profilepic} width="30px" alt="Avatar" /> */}
         <Avatar
           sx={{ width: 34, height: 34, backgroundColor: "var(--dark-color)" }}
-          alt={username}
+          alt={firstname}
           src="/broken-image.jpg"
         />
         <span style={{ paddingLeft: "10px" }} className="username">
-          {username}
+          {firstname}
         </span>
       </div>
       <Menu

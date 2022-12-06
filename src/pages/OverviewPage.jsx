@@ -5,6 +5,7 @@ import SubComponentsPickers from "../components/SubComponentsPickers";
 import LoadingBookin from "../components/loading-bookin.gif";
 import { transformToArray } from "../firebase-utils";
 import YourBookingBox from "../components/YourBookingBox";
+import MultipleSelectNative from "../components/MultipleSelectNative";
 
 export default function BookingOverview({
   title,
@@ -52,13 +53,23 @@ export default function BookingOverview({
   return (
     <>
       {isLoading ? (
-        <div style={{marginRight:"auto", marginLeft:"auto", alignSelf:"center"}}>
+        <div
+          style={{
+            marginRight: "auto",
+            marginLeft: "auto",
+            alignSelf: "center",
+          }}
+        >
           <img
             style={{ margin: "auto", alignSelf: "center" }}
             width={"200px"}
             src={LoadingBookin}
           />
-          <div class="loader">Loading<span class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span></div>
+          <div className="loader">
+            Loading<span className="loader__dot">.</span>
+            <span className="loader__dot">.</span>
+            <span className="loader__dot">.</span>
+          </div>
         </div>
       ) : (
         <div className="row">
@@ -66,23 +77,29 @@ export default function BookingOverview({
             <SubComponentsPickers setChoosenDate={setChoosenDate} />
           </div>
           <div className="column">
-            <h4 className="choose-title">Mine bookninger</h4>
-            {bookings.map((booking) => {
-              return (
-                <YourBookingBox
-                  id={booking.id}
-                  room={booking.room}
-                  date={booking.date}
-                  time={booking.time}
-                />
-              );
-            })}
-            {isError && (
-              <p>
-                Der er sket en uventet fejl med indlæsningen af dine bookninger.
-                Prøv igen senere.
-              </p>
-            )}
+            <div>
+              <h4 className="choose-title">Mine bookninger</h4>
+              {bookings.map((booking) => {
+                return (
+                  <YourBookingBox
+                    id={booking.id}
+                    room={booking.room}
+                    date={booking.date}
+                    time={booking.time}
+                  />
+                );
+              })}
+              {isError && (
+                <p>
+                  Der er sket en uventet fejl med indlæsningen af dine
+                  bookninger. Prøv igen senere.
+                </p>
+              )}
+            </div>
+            <div>
+              <h4 className="choose-title">Andres bookinger</h4>
+              <MultipleSelectNative />
+            </div>
           </div>
         </div>
       )}

@@ -61,7 +61,7 @@ export default function YourBookingBox({ id, date, time, room }) {
     <>
       <div className="your-booking-box" key={id} id={id} date={date}>
         <span>
-          Lokale&nbsp;{roomFormat}&nbsp;-&nbsp;Kl.&nbsp;
+          {date}&nbsp;Lokale&nbsp;{roomFormat}&nbsp;-&nbsp;Kl.&nbsp;
           {timeFormat}
         </span>
         <div

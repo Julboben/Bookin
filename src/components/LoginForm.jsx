@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./LoginForm.css";
 import BookinButton from "./BookinButton";
 import { Link, useNavigate } from "react-router-dom";
 import AlertComponenet from "./PositionedSnackbar";
 
-export default function LoginForm({ setUsername }) {
-  const url =
-    "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBgOitJoJUNdhp2g6WgAb263TodzEVwE-s";
-
+export default function LoginForm({ setActiveUser }) {
   /* Snackbar */
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [snackMessage, setSnackMessage] = useState(null);
@@ -44,6 +41,8 @@ export default function LoginForm({ setUsername }) {
       setSnackMessage("Udfyld venligst både din e-mail og password.");
       setSnackbarSeverity("warning");
     } else {
+      const url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBgOitJoJUNdhp2g6WgAb263TodzEVwE-s";
       const response = await fetch(url, {
         method: "POST",
         body: JSON.stringify({
@@ -56,24 +55,22 @@ export default function LoginForm({ setUsername }) {
 
       /* Check if we get any reponse errors */
       if (response.status === 200) {
-        const result = response.json;
+        const result = await response.json();
         /* console.log(result); */
 
         /* Fetches and sets the username */
-        const username = document.querySelector("#email").value;
+        const userId = result.localId;
+        const curl =
+          "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app";
+        const userResponse = await fetch(
+          curl + "/" + "users" + "/" + userId + ".json"
+        );
+        /* console.log(userResponse); */
+        const userResult = await userResponse.json();
+        /* console.log(userResult); */
 
-        /* Should be done in the database! */
-        if (username === "kontakt@julben.dk") {
-          setUsername("Julian");
-        } else if (username === "kirs@cphbusiness.dk") {
-          setUsername("Christian");
-        } else if (username === "mtnl@cphbusiness.dk") {
-          setUsername("Mathias");
-        } else if (username === "jrs@cphbusiness.dk") {
-          setUsername("Jeppe");
-        } else if (username === "underviser@cphbusiness.dk") {
-          setUsername("Underviser");
-        }
+        /* You can get all user settings with userResult.property */
+        setActiveUser(userResult);
 
         navigate("/home");
       } else {

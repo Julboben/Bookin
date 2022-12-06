@@ -8,13 +8,8 @@ import AlertComponenet from "../components/PositionedSnackbar";
 import SubComponentsPickers from "../components/SubComponentsPickers";
 import TimeButton from "../components/TimeButton";
 import dingSfx from "../assets/ding.mp3";
-import InfoIcon from "@mui/icons-material/Info";
-import HelpIcon from "@mui/icons-material/Help";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { Avatar, Tooltip } from "@mui/material";
-import { transformToArray } from "../firebase-utils";
-import { ConstructionOutlined } from "@mui/icons-material";
 
 export default function BookingPage({ title, setTitle, setBookings }) {
   /* Sets title */

@@ -10,7 +10,7 @@ const noon = <LightModeIcon />;
 const afternoon = <WbSunnyIcon />;
 const night = <NightlightIcon />;
 
-export default function Greeting( {username} ) {
+export default function Greeting( {firstname} ) {
   const [helloText, setHelloText] = useState("");
   const [emoji, setEmoji] = useState("");
 
@@ -33,5 +33,5 @@ export default function Greeting( {username} ) {
       setEmoji(night);
     }
   }, []);
-  return <><span style={{paddingRight:"10px"}}><Avatar sx={{ bgcolor: "var(--success-color)", width: 34, height: 34 }}>{emoji}</Avatar></span><span>{helloText},&nbsp;{username}!</span></>;
+  return <><span style={{paddingRight:"10px"}}><Avatar sx={{ bgcolor: "var(--success-color)", width: 34, height: 34 }}>{emoji}</Avatar></span><span>{helloText},&nbsp;<span className="capitalize">{firstname}!</span></span></>;
 }

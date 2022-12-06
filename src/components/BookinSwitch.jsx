@@ -50,26 +50,72 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-export default function BookinSwitch({ leftValue, rightValue, checked, name }) {
-    const [isChecked, setIsChecked] = React.useState(true);
+export default function BookinSwitch({
+  leftValue,
+  rightValue,
+  checked,
+  name,
+  id,
+  activeUser,
+  setActiveUser,
+}) {
+  /* console.log(activeUser.darkmode); */
+
+  // console.log(id, checked);
+  const [isChecked, setIsChecked] = React.useState(checked);
   const [play] = useSound(dingSfx);
 
-  const handleChange = () => {
-    setIsChecked(current => !current);
-    console.log(name + " er nu: " + isChecked);
-    /* Plays useSound */
-    play()
+  const handleChange = async () => {
+    // console.log(isChecked);
+    
+    setIsChecked((current) => !current);
+    
+    const url =
+      "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app";
+    const response = await fetch(
+      url + "/" + "users" + "/" + activeUser.id + "/" + id + ".json",
+      {
+        method: "PUT",
+        body: !isChecked,
+      }
+    );
 
+    /* Fetches new activeUser property */
+    // const userResponse = await fetch(
+    //   url + "/" + "users" + "/" + activeUser.id + ".json"
+    // );
+
+    // const userResult = await userResponse.json();
+    // setActiveUser(userResult);
+
+    console.log(response);
+
+    if (response.status === 200) {
+      const body = await response.json();
+      // console.log(body);
+
+      // console.log(name + " er nu: " + isChecked);
+
+      
+      const user = {...activeUser};
+      user[id] = !isChecked;
+
+      setActiveUser(user);
+      /* Plays useSound */
+      play();
+    } else {
+      console.log("Fejl!");
+    }
   };
 
   return (
     <Stack direction="row" spacing={1} alignItems="center">
       <Typography>{leftValue}</Typography>
       <AntSwitch
+        id={id}
         onChange={handleChange}
         checked={isChecked}
         inputProps={{ "aria-label": "ant design" }}
-        value={isChecked}
         name={name}
       />
       <Typography>{rightValue}</Typography>

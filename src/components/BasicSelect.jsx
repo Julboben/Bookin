@@ -9,6 +9,8 @@ import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
 import WindowIcon from "@mui/icons-material/Window";
 import AirplayIcon from "@mui/icons-material/Airplay";
 import { transformToArray } from "../firebase-utils";
+import { Tooltip } from "@mui/material";
+import MaxPeopleIcon from "./MaxPeopleIcon";
 
 export default function BasicSelect(props) {
   const [room, setRoom] = React.useState("");
@@ -40,7 +42,9 @@ export default function BasicSelect(props) {
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">{props.label}</InputLabel>
         <Select
-          MenuProps={{ PaperProps: { sx: { maxHeight: 205, overflowY:"scroll" } } }}
+          MenuProps={{
+            PaperProps: { sx: { maxHeight: 205, overflowY: "scroll" } },
+          }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={room}
@@ -50,19 +54,30 @@ export default function BasicSelect(props) {
           {rooms.map((room) => {
             return (
               <MenuItem key={room.id} value={room.room}>
-                <span className="select-room-name">{room.room.toUpperCase()}</span>
+                <span className="select-room-name">
+                  {room.room.toUpperCase()}
+                </span>
                 {room.proj && (
-                  <AirplayIcon fontSize="10" className="help-icon" />
+                  <Tooltip title="Projector">
+                    <AirplayIcon fontSize="10" className="help-icon" />
+                  </Tooltip>
                 )}
-                {room.win && <WindowIcon fontSize="10" className="help-icon" />}
+                {room.win && (
+                  <Tooltip title="Vinduer">
+                    <WindowIcon fontSize="10" className="help-icon" />
+                  </Tooltip>
+                )}
                 {room.dark && (
-                  <NightlightRoundIcon fontSize="10" className="help-icon" />
+                  <Tooltip title="Mørklægning">
+                    <NightlightRoundIcon fontSize="10" className="help-icon" />
+                  </Tooltip>
                 )}
                 {room.max && (
-                  <>
-                    <PeopleAltIcon fontSize="10" className="help-icon" />
-                    <span className="help-text">{room.max}</span>
-                  </>
+                    <Tooltip title="Max antal personer">
+                      <span>
+                      <MaxPeopleIcon maxRoom={room.max} />
+                      </span>
+                    </Tooltip>
                 )}
               </MenuItem>
             );

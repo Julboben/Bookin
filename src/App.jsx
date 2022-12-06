@@ -12,15 +12,15 @@ import SettingsPage from "./pages/SettingsPage";
 import Footer from "./components/Footer";
 
 function App() {
-  /* Changes the title in header */
-  const [username, setUsername] = useState("");
   const [title, setTitle] = useState("");
   const [bookings, setBookings] = useState([]);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [activeUser, setActiveUser] = useState({});
 
   return (
     <div>
       <div className="wrapper">
-        <TheHeader title={title} username={username} />
+        <TheHeader title={title} firstname={activeUser.firstname} />
         <main>
           <div className="content">
             <Routes>
@@ -30,7 +30,7 @@ function App() {
                   <LoginPage
                     title="Log ind"
                     setTitle={setTitle}
-                    setUsername={setUsername}
+                    setActiveUser={setActiveUser}
                   />
                 }
               />
@@ -40,7 +40,7 @@ function App() {
                   <HomePage
                     title="Hjem"
                     setTitle={setTitle}
-                    username={username}
+                    firstname={activeUser.firstname}
                   />
                 }
               />
@@ -70,6 +70,8 @@ function App() {
                   <SettingsPage
                     title="Dine indstillinger"
                     setTitle={setTitle}
+                    activeUser={activeUser}
+                    setActiveUser={setActiveUser}
                   />
                 }
               />

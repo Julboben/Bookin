@@ -1,9 +1,9 @@
 /* This is a page! */
 import "./LoginPage.css";
 import LoginForm from "../components/LoginForm";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-export default function LoginPage({ setTitle, title, setUsername }) {
+export default function LoginPage({ setTitle, title, setActiveUser }) {
   useEffect(() => {
     setTitle(title);
   }, []);
@@ -18,7 +18,7 @@ export default function LoginPage({ setTitle, title, setUsername }) {
       </div>
       <p className="page-subtitle">Log venligst ind med din skole e-mail og password.</p>
       <div className="inner-content">
-        <LoginForm setUsername={setUsername} />
+        <LoginForm setActiveUser={setActiveUser} />
       </div>
     </>
   );

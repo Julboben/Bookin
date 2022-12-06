@@ -3,17 +3,17 @@ import bookinLogo from "./bookin-logo.svg";
 import AvatarName from "./AvatarName";
 import { Link } from "react-router-dom";
 
-export default function TheHeader({ title, username }) {
+export default function TheHeader({ title, firstname }) {
 
   return (
     <header>
       <div className="row" style={{ alignItems: "flex-end" }}>
-        <div className="column">
-          {username && <AvatarName username={username} />}
+        <div className="column capitalize">
+          {firstname && <AvatarName firstname={firstname} />}
         </div>
         <div className="column">
           {/* Conditional rendering. Trueish or falseish */}
-          <Link to={username ? "/home" : "/bookin"}>
+          <Link to={firstname ? "/home" : "/bookin"}>
             <img src={bookinLogo} width="80px" alt="Bookin logo" />
           </Link>
         </div>
