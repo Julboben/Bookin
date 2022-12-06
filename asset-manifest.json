@@ -1,13 +1,10 @@
 {
   "files": {
-    "main.css": "/Bookin/static/css/main.c4744bb9.css",
-    "main.js": "/Bookin/static/js/main.353d4539.js",
+    "main.css": "/Bookin/static/css/main.281ef750.css",
+    "main.js": "/Bookin/static/js/main.426f0ed4.js",
     "static/js/845.a7af5a29.chunk.js": "/Bookin/static/js/845.a7af5a29.chunk.js",
     "static/js/787.22cf53f4.chunk.js": "/Bookin/static/js/787.22cf53f4.chunk.js",
     "static/media/ding.mp3": "/Bookin/static/media/ding.4bf3338b447992c9a6c5.mp3",
-    "static/media/thumbnailBooking.png": "/Bookin/static/media/thumbnailBooking.2ecb9f3551285dd9daad.png",
-    "static/media/thumbnailOverview.png": "/Bookin/static/media/thumbnailOverview.5a02633ecd0f05aba8c1.png",
-    "static/media/thumbnailSettings.png": "/Bookin/static/media/thumbnailSettings.c9d966ed5da476cd7893.png",
     "static/media/loading-bookin.gif": "/Bookin/static/media/loading-bookin.a261d5c307cee43d57d2.gif",
     "static/media/bookin-logo.svg": "/Bookin/static/media/bookin-logo.a30594cae9793495779d16cfcedf5001.svg",
     "static/media/delete.mp3": "/Bookin/static/media/delete.ad25d44ba4b6eb2972c6.mp3",
@@ -16,13 +13,13 @@
     "static/media/calendar.svg": "/Bookin/static/media/calendar.7b18e7b03698e10d7551e48101a1fd43.svg",
     "static/media/flag.svg": "/Bookin/static/media/flag.165363d8d62dd5babd800c052e24425d.svg",
     "index.html": "/Bookin/index.html",
-    "main.c4744bb9.css.map": "/Bookin/static/css/main.c4744bb9.css.map",
-    "main.353d4539.js.map": "/Bookin/static/js/main.353d4539.js.map",
+    "main.281ef750.css.map": "/Bookin/static/css/main.281ef750.css.map",
+    "main.426f0ed4.js.map": "/Bookin/static/js/main.426f0ed4.js.map",
     "845.a7af5a29.chunk.js.map": "/Bookin/static/js/845.a7af5a29.chunk.js.map",
     "787.22cf53f4.chunk.js.map": "/Bookin/static/js/787.22cf53f4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c4744bb9.css",
-    "static/js/main.353d4539.js"
+    "static/css/main.281ef750.css",
+    "static/js/main.426f0ed4.js"
   ]
 }
