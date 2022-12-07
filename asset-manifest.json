@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Bookin/static/css/main.281ef750.css",
-    "main.js": "/Bookin/static/js/main.426f0ed4.js",
+    "main.css": "/Bookin/static/css/main.16adccee.css",
+    "main.js": "/Bookin/static/js/main.1ec05ec4.js",
     "static/js/845.a7af5a29.chunk.js": "/Bookin/static/js/845.a7af5a29.chunk.js",
     "static/js/787.22cf53f4.chunk.js": "/Bookin/static/js/787.22cf53f4.chunk.js",
     "static/media/ding.mp3": "/Bookin/static/media/ding.4bf3338b447992c9a6c5.mp3",
@@ -13,13 +13,13 @@
     "static/media/calendar.svg": "/Bookin/static/media/calendar.7b18e7b03698e10d7551e48101a1fd43.svg",
     "static/media/flag.svg": "/Bookin/static/media/flag.165363d8d62dd5babd800c052e24425d.svg",
     "index.html": "/Bookin/index.html",
-    "main.281ef750.css.map": "/Bookin/static/css/main.281ef750.css.map",
-    "main.426f0ed4.js.map": "/Bookin/static/js/main.426f0ed4.js.map",
+    "main.16adccee.css.map": "/Bookin/static/css/main.16adccee.css.map",
+    "main.1ec05ec4.js.map": "/Bookin/static/js/main.1ec05ec4.js.map",
     "845.a7af5a29.chunk.js.map": "/Bookin/static/js/845.a7af5a29.chunk.js.map",
     "787.22cf53f4.chunk.js.map": "/Bookin/static/js/787.22cf53f4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.281ef750.css",
-    "static/js/main.426f0ed4.js"
+    "static/css/main.16adccee.css",
+    "static/js/main.1ec05ec4.js"
   ]
 }
