@@ -1,20 +1,20 @@
 import "./App.css";
 import "./fonts.css";
 import TheHeader from "./components/TheHeader.jsx";
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import OverviewPage from "./pages/OverviewPage";
 import NoMatch from "./pages/NoMatch";
 import BookingPage from "./pages/BookingPage";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SettingsPage from "./pages/SettingsPage";
 import Footer from "./components/Footer";
+import languageTranslate from "./components/languageTranslate.json";
 
 function App() {
   const [title, setTitle] = useState("");
   const [bookings, setBookings] = useState([]);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [activeUser, setActiveUser] = useState({});
 
   return (
@@ -22,10 +22,10 @@ function App() {
       <div className="wrapper">
         <TheHeader title={title} firstname={activeUser.firstname} />
         <main>
-          <div className="content">
+          <div className={`content ${activeUser.darkmode ? "darkmode" : ""}`}>
             <Routes>
               <Route
-                path="/bookin"
+                index
                 element={
                   <LoginPage
                     title="Log ind"
@@ -38,7 +38,7 @@ function App() {
                 path="/home"
                 element={
                   <HomePage
-                    title="Hjem"
+                    title={activeUser.lang ? languageTranslate["HOME"].dk : languageTranslate["HOME"].eng}
                     setTitle={setTitle}
                     firstname={activeUser.firstname}
                   />
@@ -48,9 +48,12 @@ function App() {
                 path="/overview"
                 element={
                   <OverviewPage
-                    bookings={bookings} setBookings={setBookings}
-                    title="Aktuelle Bookninger"
+                    bookings={bookings}
+                    setBookings={setBookings}
+                    // title="Aktuelle Bookninger"
+                    title={activeUser.lang ? languageTranslate["OVERVIEW"].dk : languageTranslate["OVERVIEW"].eng}
                     setTitle={setTitle}
+                    activeUser={activeUser}
                   />
                 }
               />
@@ -59,16 +62,19 @@ function App() {
                 element={
                   <BookingPage
                     setBookings={setBookings}
-                    title="Ny booking"
+                    title={activeUser.lang ? languageTranslate["NEW-BOOKING"].dk : languageTranslate["NEW-BOOKING"].eng}
                     setTitle={setTitle}
+                    activeUser={activeUser}
                   />
                 }
               />
+
               <Route
                 path="/settings"
                 element={
                   <SettingsPage
-                    title="Dine indstillinger"
+                    title={activeUser.lang ? languageTranslate["YOUR-SETTINGS"].dk : languageTranslate["YOUR-SETTINGS"].eng}
+                    // title={languageTranslate["YOUR-SETTINGS"].dk}
                     setTitle={setTitle}
                     activeUser={activeUser}
                     setActiveUser={setActiveUser}

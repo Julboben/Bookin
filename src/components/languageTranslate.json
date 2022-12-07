@@ -1,0 +1,18 @@
+{
+    "YOUR-SETTINGS": {
+        "dk": "dine indstilliger",
+        "eng": "your settings"
+    },
+    "HOME": {
+        "dk": "hjem",
+        "eng": "home"
+    },
+    "OVERVIEW": {
+        "dk": "aktuelle bookninger",
+        "eng": "overview"
+    },
+    "NEW-BOOKING": {
+        "dk": "ny bookning",
+        "eng": "new booking"
+    }
+}

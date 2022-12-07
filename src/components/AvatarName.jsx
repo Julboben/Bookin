@@ -1,17 +1,25 @@
 import { Avatar, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import logout from "../logout";
 
 export default function AvatarName({ firstname }) {
-  /* const navigate = useNavigate(); */
-
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  let navigate = useNavigate();
+
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    setAnchorEl(null);
+    navigate("/");
+    logout();
+    
   };
 
   return (
@@ -61,7 +69,7 @@ export default function AvatarName({ firstname }) {
         <Link style={{ textDecoration: "none", color: "var(--dark-color)" }}>
           {" "}
           <MenuItem
-            onClick={handleClose}
+            onClick={handleLogout}
             style={{
               fontFamily: "var(--primary-font)",
             }}

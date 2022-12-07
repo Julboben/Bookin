@@ -1,4 +1,3 @@
-/* Hvor skal stylingen være når man styler et seperat component? */
 .button {
   font-family: 'Poppins', Helvetica, sans-serif;
   background-color: var(--alert-color);

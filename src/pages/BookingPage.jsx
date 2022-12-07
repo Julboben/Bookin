@@ -11,7 +11,7 @@ import dingSfx from "../assets/ding.mp3";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Avatar, Tooltip } from "@mui/material";
 
-export default function BookingPage({ title, setTitle, setBookings }) {
+export default function BookingPage({ title, setTitle, setBookings, activeUser }) {
   /* Sets title */
   useEffect(() => {
     setTitle(title);
@@ -86,7 +86,9 @@ export default function BookingPage({ title, setTitle, setBookings }) {
         setSnackbarSeverity("error");
       } else {
         /* Plays useSound */
-        play();
+        if (activeUser.sound === true) {
+          play();
+        }
         const response = await fetch(url + "/bookings" + ".json", {
           method: "POST",
           body: JSON.stringify(booking),
@@ -122,7 +124,7 @@ export default function BookingPage({ title, setTitle, setBookings }) {
         </div>
         <div className="column">
           <div>
-            <h4 style={{ textAlign: "left", marginBottom: "40px" }}>
+            <h4 className="choose-title">
               Tidsinterval
             </h4>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -145,7 +147,7 @@ export default function BookingPage({ title, setTitle, setBookings }) {
           </div>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-              <h4 style={{ textAlign: "left", margin: "40px 0px" }}>
+              <h4 className="choose-title">
                 Ledige lokaler
               </h4>
               <Tooltip title={<IconHelp />}>

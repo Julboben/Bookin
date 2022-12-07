@@ -1,4 +1,3 @@
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
@@ -7,18 +6,17 @@ import { Tooltip } from "@mui/material";
 import useSound from "use-sound";
 import deleteSfx from "../assets/delete.mp3";
 
-export default function YourBookingBox({ id, date, time, room }) {
+export default function YourBookingBox({ id, date, time, room, activeUser }) {
   const url =
     "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app/bookings";
 
-  const [isError, setIsError] = useState(false);
 
   /* Snackbar */
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [snackMessage, setSnackMessage] = useState(null);
   const [snackbarSeverity, setSnackbarSeverity] = useState(null);
   const [play] = useSound(deleteSfx);
-  
+
   const handleClose = (reason) => {
     if (reason === "clickaway") {
       return;
@@ -33,7 +31,9 @@ export default function YourBookingBox({ id, date, time, room }) {
     });
     /* console.log(response); */
     if (response.status === 200) {
-      play()
+      if (activeUser.sound === true) {
+        play();
+      }
       setIsSnackbarOpen(true);
       setSnackMessage("Din bookning d. " + date + " er blevet slettet.");
       setSnackbarSeverity("success");

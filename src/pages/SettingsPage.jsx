@@ -3,16 +3,28 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BookinButton from "../components/BookinButton";
 import SettingsToggle from "../components/SettingsToggle";
+import logout from "../logout";
 
 /* Settings Page */
 
-export default function SettingsPage({ title, setTitle, activeUser, setActiveUser }) {
+export default function SettingsPage({
+  title,
+  setTitle,
+  activeUser,
+  setActiveUser,
+}) {
+  
+  const navigate = useNavigate();
+
   /* Sets the title */
   useEffect(() => {
     setTitle(title);
   }, []);
 
-  const navigate = useNavigate();
+  const handleLogout = () => {
+    navigate("/");
+    logout();
+  };
 
   return (
     <>
@@ -62,7 +74,7 @@ export default function SettingsPage({ title, setTitle, activeUser, setActiveUse
         />
       </div>
       <div className="button-bottom">
-        <BookinButton primary title="Log ud" />
+        <BookinButton primary title="Log ud" onClick={handleLogout} />
         <BookinButton
           onClick={() => navigate("/home")}
           secondary

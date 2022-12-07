@@ -43,6 +43,39 @@ html {
   align-items: flex-start;
 }
 
+.darkmode.content {
+  background-color: var(--dark-color);
+}
+
+.darkmode .button-secondary {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+}
+
+.darkmode .css-74lhn7-MuiCardMedia-root {
+  background-color: var(--light-color);
+}
+
+.darkmode .css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root h3 {
+  color: var(--dark-color)!important;
+}
+
+.darkmode p, .darkmode h1, .darkmode h2, .darkmode h3, .darkmode h4 {
+  color: white;
+}
+
+.darkmode hr {
+  border-color: var(--light-color);
+}
+
+.darkmode .time-button {
+  background-color: var(--light-color);
+}
+
+.darkmode #demo-simple-select {
+  background-color: var(--light-color);
+}
+
 .inner-content {
   width: 100%;
   align-items: center;
@@ -111,6 +144,7 @@ h4 {
 
 .choose-title {
   text-align: left;
+  margin: 40px 0px;
 }
 
 .username {

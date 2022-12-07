@@ -13,7 +13,7 @@ export default function TheHeader({ title, firstname }) {
         </div>
         <div className="column">
           {/* Conditional rendering. Trueish or falseish */}
-          <Link to={firstname ? "/home" : "/bookin"}>
+          <Link to={firstname ? "/home" : "/"}>
             <img src={bookinLogo} width="80px" alt="Bookin logo" />
           </Link>
         </div>

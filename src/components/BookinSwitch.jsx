@@ -67,9 +67,9 @@ export default function BookinSwitch({
 
   const handleChange = async () => {
     // console.log(isChecked);
-    
+
     setIsChecked((current) => !current);
-    
+
     const url =
       "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app";
     const response = await fetch(
@@ -88,21 +88,22 @@ export default function BookinSwitch({
     // const userResult = await userResponse.json();
     // setActiveUser(userResult);
 
-    console.log(response);
+    // console.log(response);
 
     if (response.status === 200) {
-      const body = await response.json();
+      // const body = await response.json();
       // console.log(body);
 
       // console.log(name + " er nu: " + isChecked);
 
-      
-      const user = {...activeUser};
+      const user = { ...activeUser };
       user[id] = !isChecked;
 
       setActiveUser(user);
       /* Plays useSound */
-      play();
+      if (activeUser.sound === true) {
+        play();
+      }
     } else {
       console.log("Fejl!");
     }

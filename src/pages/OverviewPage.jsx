@@ -12,6 +12,7 @@ export default function BookingOverview({
   setTitle,
   bookings,
   setBookings,
+  activeUser
 }) {
   /* Sets title in header */
   useEffect(() => {
@@ -50,6 +51,8 @@ export default function BookingOverview({
     }, delayInMilliseconds);
   }, []);
 
+
+
   return (
     <>
       {isLoading ? (
@@ -79,16 +82,32 @@ export default function BookingOverview({
           <div className="column">
             <div>
               <h4 className="choose-title">Mine bookninger</h4>
-              {bookings.map((booking) => {
+              {bookings.filter(bookings => bookings.date.includes(choosenDate)).map((booking) => {
                 return (
+                  
                   <YourBookingBox
                     id={booking.id}
                     room={booking.room}
                     date={booking.date}
                     time={booking.time}
+                    activeUser={activeUser}
                   />
+                  
                 );
               })}
+{/*               {bookings.map((booking) => {
+                return (
+                  
+                  <YourBookingBox
+                    id={booking.id}
+                    room={booking.room}
+                    date={booking.date}
+                    time={booking.time}
+                    activeUser={activeUser}
+                  />
+                  
+                );
+              })} */}
               {isError && (
                 <p>
                   Der er sket en uventet fejl med indlæsningen af dine
