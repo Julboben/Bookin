@@ -2,22 +2,13 @@ import { useState } from "react";
 import "./LoginForm.css";
 import BookinButton from "./BookinButton";
 import { Link, useNavigate } from "react-router-dom";
-import AlertComponenet from "./PositionedSnackbar";
 
-export default function LoginForm({ setActiveUser }) {
-  /* Snackbar */
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
-  const [snackMessage, setSnackMessage] = useState(null);
-  const [snackbarSeverity, setSnackbarSeverity] = useState(null);
-
-  const handleClose = (reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setIsSnackbarOpen(false);
-  };
-
+export default function LoginForm({
+  setActiveUser,
+  setIsSnackbarOpen,
+  setSnackMessage,
+  setSnackbarSeverity
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -116,12 +107,6 @@ export default function LoginForm({ setActiveUser }) {
             Dit brugernavn eller password er ugyldigt.
           </p>
         )} */}
-        <AlertComponenet
-          message={snackMessage}
-          severity={snackbarSeverity}
-          open={isSnackbarOpen}
-          handleClose={handleClose}
-        />
       </form>
     </>
   );

@@ -11,7 +11,7 @@ export default function HomePage({ setTitle, title, firstname }) {
   }, []);
 
   return (
-    <>
+    <div className="row">
       <h2 className="page-subtitle">
         <Greeting firstname={firstname} />
       </h2>
@@ -23,6 +23,7 @@ export default function HomePage({ setTitle, title, firstname }) {
           flexWrap: "wrap",
           gap: "20px",
           alignContent: "center",
+          alignSelf: "flex-start"
         }}
         className="inner-content"
       >
@@ -51,6 +52,6 @@ export default function HomePage({ setTitle, title, firstname }) {
           textColor="var(--light-color)"
         />
       </div>
-    </>
+    </div>
   );
 }

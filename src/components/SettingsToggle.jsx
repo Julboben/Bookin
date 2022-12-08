@@ -8,7 +8,10 @@ export default function SettingsToggle({
   checked,
   id,
   activeUser,
-  setActiveUser
+  setActiveUser,
+  setIsSnackbarOpen,
+  setSnackMessage,
+  setSnackbarSeverity
 }) {
   return (
     <>
@@ -31,6 +34,9 @@ export default function SettingsToggle({
           checked={checked}
           rightValue={rightValue}
           leftValue={leftValue}
+          setIsSnackbarOpen={setIsSnackbarOpen}
+          setSnackMessage={setSnackMessage}
+          setSnackbarSeverity={setSnackbarSeverity}
         />
       </div>
     </>

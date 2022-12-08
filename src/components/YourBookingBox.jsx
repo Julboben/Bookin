@@ -1,28 +1,24 @@
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
-import { useState } from "react";
-import AlertComponenet from "./PositionedSnackbar";
 import { Tooltip } from "@mui/material";
 import useSound from "use-sound";
 import deleteSfx from "../assets/delete.mp3";
 
-export default function YourBookingBox({ id, date, time, room, activeUser }) {
+export default function YourBookingBox({
+  id,
+  date,
+  time,
+  room,
+  activeUser,
+  setIsSnackbarOpen,
+  setSnackMessage,
+  setSnackbarSeverity
+}) {
   const url =
     "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app/bookings";
 
-
-  /* Snackbar */
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
-  const [snackMessage, setSnackMessage] = useState(null);
-  const [snackbarSeverity, setSnackbarSeverity] = useState(null);
   const [play] = useSound(deleteSfx);
-
-  const handleClose = (reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setIsSnackbarOpen(false);
-  };
+  /* Snackbar */
 
   const handleDelete = async () => {
     /* setDelete(event.target.value); */
@@ -89,12 +85,6 @@ export default function YourBookingBox({ id, date, time, room, activeUser }) {
           </Tooltip>
         </div>
       </div>
-      <AlertComponenet
-        message={snackMessage}
-        severity={snackbarSeverity}
-        open={isSnackbarOpen}
-        handleClose={handleClose}
-      />
     </>
   );
 }

@@ -11,23 +11,19 @@ import dingSfx from "../assets/ding.mp3";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Avatar, Tooltip } from "@mui/material";
 
-export default function BookingPage({ title, setTitle, setBookings, activeUser }) {
+export default function BookingPage({
+  title,
+  setTitle,
+  setBookings,
+  activeUser,
+  setIsSnackbarOpen,
+  setSnackMessage,
+  setSnackbarSeverity,
+}) {
   /* Sets title */
   useEffect(() => {
     setTitle(title);
   }, []);
-
-  /* Snackbar */
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
-  const [snackMessage, setSnackMessage] = useState(null);
-  const [snackbarSeverity, setSnackbarSeverity] = useState(null);
-
-  const handleClose = (reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setIsSnackbarOpen(false);
-  };
 
   const navigate = useNavigate();
   const url =
@@ -47,14 +43,15 @@ export default function BookingPage({ title, setTitle, setBookings, activeUser }
     const bookingArray = Object.values(body);
     /* console.log(bookingArray) */
 
-    const matchingBookings = bookingArray.filter( booking => {
-      return (booking.date === choosenDate) &&
-      (booking.room === choosenRoom) &&
-      (booking.time === choosenTime)
-    })
+    const matchingBookings = bookingArray.filter((booking) => {
+      return (
+        booking.date === choosenDate &&
+        booking.room === choosenRoom &&
+        booking.time === choosenTime
+      );
+    });
 
-    return (matchingBookings.length > 0)    
-
+    return matchingBookings.length > 0;
   };
 
   const handleClick = async () => {
@@ -78,7 +75,7 @@ export default function BookingPage({ title, setTitle, setBookings, activeUser }
         setSnackMessage("Vælg venligst både et tidspunkt og lokale.");
       }
     } else {
-      if  ( await validateExistingBooking(booking)) {
+      if (await validateExistingBooking(booking)) {
         setIsSnackbarOpen(true);
         setSnackMessage(
           "Lokalet på dette dato og tidspunkt er desværre allerede booket."
@@ -116,17 +113,14 @@ export default function BookingPage({ title, setTitle, setBookings, activeUser }
   };
 
   return (
-    <>
-      <div className="row">
+    <div className="row">
         <div className="column">
           <SubComponentsPickers setChoosenDate={setChoosenDate} />
           {/* <StaticDatePickerLandscape /> */}
         </div>
         <div className="column">
           <div>
-            <h4 className="choose-title">
-              Tidsinterval
-            </h4>
+            <h4 className="choose-title">Tidsinterval</h4>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <TimeButton
                 title="08.30 - 12.00"
@@ -147,9 +141,7 @@ export default function BookingPage({ title, setTitle, setBookings, activeUser }
           </div>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-              <h4 className="choose-title">
-                Ledige lokaler
-              </h4>
+              <h4 className="choose-title">Ledige lokaler</h4>
               <Tooltip title={<IconHelp />}>
                 <Avatar
                   sx={{
@@ -165,22 +157,16 @@ export default function BookingPage({ title, setTitle, setBookings, activeUser }
             </div>
             <BasicSelect setChoosenRoom={setChoosenRoom} label="Vælg lokale" />
           </div>
-        </div>
+
       </div>
-      <AlertComponenet
-        message={snackMessage}
-        severity={snackbarSeverity}
-        open={isSnackbarOpen}
-        handleClose={handleClose}
-      />
       <div className="button-bottom">
         <BookinButton onClick={handleClick} primary title="Bekræft" />
         <BookinButton
           onClick={() => navigate("/home")}
           secondary
-          title="Fortryd"
+          title="Hjem"
         />
       </div>
-    </>
+    </div>
   );
 }

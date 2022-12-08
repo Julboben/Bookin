@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import BookinButton from "../components/BookinButton";
 import SubComponentsPickers from "../components/SubComponentsPickers";
 import LoadingBookin from "../components/loading-bookin.gif";
-import { transformToArray } from "../firebase-utils";
+import { transformToArray, getData } from "../firebase-utils";
 import YourBookingBox from "../components/YourBookingBox";
 import MultipleSelectNative from "../components/MultipleSelectNative";
 
@@ -12,9 +12,12 @@ export default function BookingOverview({
   setTitle,
   bookings,
   setBookings,
-  activeUser
+  activeUser,
+  setIsSnackbarOpen,
+  setSnackMessage,
+  setSnackbarSeverity,
 }) {
-  /* Sets title in header */
+  // Sets title in header
   useEffect(() => {
     setTitle(title);
   }, []);
@@ -30,31 +33,31 @@ export default function BookingOverview({
   useLayoutEffect(() => {
     setIsLoading(true);
 
-    async function getData() {
+    // Moved to firebase-utils
+    /*     async function getData() {
       const response = await fetch(url);
-      /* console.log(response); */
+      // console.log(response);
       if (response.status === 200) {
         const body = await response.json();
         const asArray = transformToArray(body);
-        /* console.log(asArray); */
+        // console.log(asArray);
         setBookings(asArray);
       } else {
         setIsError(true);
       }
       setIsLoading(false);
-    }
-    /* Runs foced delay before getData */
-    /* Forced delay 3 seconds */
+    } */
+
+    // Runs foced delay before getData
+    // Forced delay 1 seconds
     const delayInMilliseconds = 1000;
     setTimeout(function () {
-      getData();
+      getData({ setIsError, setBookings, setIsLoading });
     }, delayInMilliseconds);
   }, []);
 
-
-
   return (
-    <>
+    <div className="row">
       {isLoading ? (
         <div
           style={{
@@ -82,20 +85,24 @@ export default function BookingOverview({
           <div className="column">
             <div>
               <h4 className="choose-title">Mine bookninger</h4>
-              {bookings.filter(bookings => bookings.date.includes(choosenDate)).map((booking) => {
-                return (
-                  
-                  <YourBookingBox
-                    id={booking.id}
-                    room={booking.room}
-                    date={booking.date}
-                    time={booking.time}
-                    activeUser={activeUser}
-                  />
-                  
-                );
-              })}
-{/*               {bookings.map((booking) => {
+              {bookings
+                .filter((bookings) => bookings.date.includes(choosenDate))
+                .map((booking) => {
+                  return (
+                    <YourBookingBox
+                      id={booking.id}
+                      room={booking.room}
+                      date={booking.date}
+                      time={booking.time}
+                      activeUser={activeUser}
+                      setIsSnackbarOpen={setIsSnackbarOpen}
+                      setSnackMessage={setSnackMessage}
+                      setSnackbarSeverity={setSnackbarSeverity}
+                    />
+                  );
+                })}
+
+              {/* {bookings.map((booking) => {
                 return (
                   
                   <YourBookingBox
@@ -108,6 +115,7 @@ export default function BookingOverview({
                   
                 );
               })} */}
+
               {isError && (
                 <p>
                   Der er sket en uventet fejl med indlæsningen af dine
@@ -135,6 +143,6 @@ export default function BookingOverview({
           title="Hjem"
         />
       </div>
-    </>
+    </div>
   );
 }

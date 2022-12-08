@@ -1,5 +1,5 @@
 import { Divider } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BookinButton from "../components/BookinButton";
 import SettingsToggle from "../components/SettingsToggle";
@@ -12,8 +12,10 @@ export default function SettingsPage({
   setTitle,
   activeUser,
   setActiveUser,
+  setIsSnackbarOpen,
+  setSnackMessage,
+  setSnackbarSeverity,
 }) {
-  
   const navigate = useNavigate();
 
   /* Sets the title */
@@ -27,8 +29,8 @@ export default function SettingsPage({
   };
 
   return (
-    <>
-      <div style={{ width: "100%" }}>
+    <div className="row">
+      <div className="column">
         <SettingsToggle
           name="Sprog"
           id="lang"
@@ -38,6 +40,9 @@ export default function SettingsPage({
           activeUser={activeUser}
           checked={activeUser.lang}
           setActiveUser={setActiveUser}
+          setIsSnackbarOpen={setIsSnackbarOpen}
+          setSnackMessage={setSnackMessage}
+          setSnackbarSeverity={setSnackbarSeverity}
         />
         <Divider />
         <SettingsToggle
@@ -49,6 +54,9 @@ export default function SettingsPage({
           activeUser={activeUser}
           checked={activeUser.sound}
           setActiveUser={setActiveUser}
+          setIsSnackbarOpen={setIsSnackbarOpen}
+          setSnackMessage={setSnackMessage}
+          setSnackbarSeverity={setSnackbarSeverity}
         />
         <Divider />
         <SettingsToggle
@@ -60,6 +68,9 @@ export default function SettingsPage({
           activeUser={activeUser}
           checked={activeUser.receipt}
           setActiveUser={setActiveUser}
+          setIsSnackbarOpen={setIsSnackbarOpen}
+          setSnackMessage={setSnackMessage}
+          setSnackbarSeverity={setSnackbarSeverity}
         />
         <Divider />
         <SettingsToggle
@@ -71,6 +82,9 @@ export default function SettingsPage({
           activeUser={activeUser}
           checked={activeUser.darkmode}
           setActiveUser={setActiveUser}
+          setIsSnackbarOpen={setIsSnackbarOpen}
+          setSnackMessage={setSnackMessage}
+          setSnackbarSeverity={setSnackbarSeverity}
         />
       </div>
       <div className="button-bottom">
@@ -81,6 +95,6 @@ export default function SettingsPage({
           title="Hjem"
         />
       </div>
-    </>
+    </div>
   );
 }

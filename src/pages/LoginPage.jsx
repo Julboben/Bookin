@@ -3,22 +3,35 @@ import "./LoginPage.css";
 import LoginForm from "../components/LoginForm";
 import { useEffect } from "react";
 
-export default function LoginPage({ setTitle, title, setActiveUser }) {
+export default function LoginPage({
+  setTitle,
+  title,
+  setActiveUser,
+  setIsSnackbarOpen,
+  setSnackMessage,
+  setSnackbarSeverity
+}) {
+  
   useEffect(() => {
     setTitle(title);
   }, []);
 
   return (
     <>
-      <div style={{marginLeft:"auto", marginRight:"auto"}}>
+      <div style={{ marginLeft: "auto", marginRight: "auto" }}>
         <h2>Velkommen til Bookin!</h2>
-        <h4>
-          Et bookingsystem udviklet specielt til dig som underviser.
-        </h4>
+        <h4>Et bookingsystem udviklet specielt til dig som underviser.</h4>
       </div>
-      <p className="page-subtitle">Log venligst ind med din skole e-mail og password.</p>
+      <p className="page-subtitle">
+        Log venligst ind med din skole e-mail og password.
+      </p>
       <div className="inner-content">
-        <LoginForm setActiveUser={setActiveUser} />
+        <LoginForm
+          setActiveUser={setActiveUser}
+          setIsSnackbarOpen={setIsSnackbarOpen}
+          setSnackMessage={setSnackMessage}
+          setSnackbarSeverity={setSnackbarSeverity}
+        />
       </div>
     </>
   );

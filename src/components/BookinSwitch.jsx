@@ -58,8 +58,11 @@ export default function BookinSwitch({
   id,
   activeUser,
   setActiveUser,
+  setIsSnackbarOpen,
+  setSnackMessage,
+  setSnackbarSeverity
 }) {
-  /* console.log(activeUser.darkmode); */
+  // console.log(activeUser.darkmode);
 
   // console.log(id, checked);
   const [isChecked, setIsChecked] = React.useState(checked);
@@ -104,6 +107,21 @@ export default function BookinSwitch({
       if (activeUser.sound === true) {
         play();
       }
+
+      // Snackbar
+      let ToggleChecked = "";
+      if ( !isChecked ) {
+        ToggleChecked = "til";
+      } else {
+        ToggleChecked = "fra"
+      }
+
+      setIsSnackbarOpen(true);
+      setSnackMessage(
+        name + " er slået " + ToggleChecked + "."
+      );
+      setSnackbarSeverity("success");
+
     } else {
       console.log("Fejl!");
     }
