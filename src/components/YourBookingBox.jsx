@@ -1,8 +1,10 @@
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { Tooltip } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import useSound from "use-sound";
 import deleteSfx from "../assets/delete.mp3";
+import { getData } from "../firebase-utils";
 
 export default function YourBookingBox({
   id,
@@ -12,10 +14,20 @@ export default function YourBookingBox({
   activeUser,
   setIsSnackbarOpen,
   setSnackMessage,
-  setSnackbarSeverity
+  setSnackbarSeverity,
+  setIsError,
+  setBookings,
+  setIsLoading,
+  setChoosenDate,
+  setChoosenRoom,
+  setChoosenTime,
+  setEditBooking,
+  setEditBookingId
 }) {
   const url =
     "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app/bookings";
+
+  const navigate = useNavigate();
 
   const [play] = useSound(deleteSfx);
   /* Snackbar */
@@ -33,7 +45,9 @@ export default function YourBookingBox({
       setIsSnackbarOpen(true);
       setSnackMessage("Din bookning d. " + date + " er blevet slettet.");
       setSnackbarSeverity("success");
-      document.querySelector("#" + id).style.display = "none";
+      // Not necessary when running getData() again
+      // document.querySelector("#" + id).style.display = "none";
+      getData({ setIsError, setBookings, setIsLoading });
     } else {
       setIsSnackbarOpen(true);
       setSnackMessage("Din bookning kunne ikke slettes. Prøv igen senere.");
@@ -42,11 +56,21 @@ export default function YourBookingBox({
   };
 
   const handleEdit = () => {
-    setIsSnackbarOpen(true);
+    /*     setIsSnackbarOpen(true);
     setSnackMessage(
       "Du kan desværre ikke ændre på din bookning på nuværende tidspunkt."
     );
-    setSnackbarSeverity("warning");
+    setSnackbarSeverity("warning"); */
+
+    // Handles edit
+
+    setChoosenDate(date);
+    setChoosenTime(time);
+    setChoosenRoom(room);
+    setEditBooking(true);
+    setEditBookingId(id);
+
+    navigate("/booking");
   };
 
   const roomFormat = room.substring(3, 4) + "." + room.substring(4);

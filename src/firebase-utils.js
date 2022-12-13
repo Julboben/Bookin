@@ -18,6 +18,12 @@ export function transformToArray(data) {
   return toReturn;
 }
 
+/**
+ * A function which gets the bookings data from our Firebase
+ *
+ * @param {Object} data
+ * @returns Object
+ */
 export async function getData({ setIsError, setBookings, setIsLoading }) {
   const url =
     "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app/bookings.json";

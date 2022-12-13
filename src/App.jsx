@@ -13,7 +13,6 @@ import Footer from "./components/Footer";
 import languageTranslate from "./components/languageTranslate.json";
 import AlertComponenet from "./components/PositionedSnackbar";
 import {
-  TransitionGroup,
   CSSTransition,
   SwitchTransition,
 } from "react-transition-group";
@@ -28,6 +27,15 @@ function App() {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const [snackMessage, setSnackMessage] = useState(null);
   const [snackbarSeverity, setSnackbarSeverity] = useState(null);
+
+  // setBookings values
+  const [choosenDate, setChoosenDate] = useState("");
+  const [choosenTime, setChoosenTime] = useState("");
+  const [choosenRoom, setChoosenRoom] = useState("");
+
+  // useState for editing bookings
+  const [editBooking, setEditBooking] = useState(false);
+  const [editBookingId, setEditBookingId] = useState ("")
 
   const handleClose = (reason) => {
     if (reason === "clickaway") {
@@ -86,7 +94,6 @@ function App() {
                       <OverviewPage
                         bookings={bookings}
                         setBookings={setBookings}
-                        // title="Aktuelle Bookninger"
                         title={
                           activeUser.lang
                             ? languageTranslate["OVERVIEW"].dk
@@ -97,6 +104,11 @@ function App() {
                         setIsSnackbarOpen={setIsSnackbarOpen}
                         setSnackMessage={setSnackMessage}
                         setSnackbarSeverity={setSnackbarSeverity}
+                        setChoosenDate={setChoosenDate}
+                        setChoosenRoom={setChoosenRoom}
+                        setChoosenTime={setChoosenTime}
+                        setEditBooking={setEditBooking}
+                        setEditBookingId={setEditBookingId}
                       />
                     }
                   />
@@ -115,6 +127,15 @@ function App() {
                         setIsSnackbarOpen={setIsSnackbarOpen}
                         setSnackMessage={setSnackMessage}
                         setSnackbarSeverity={setSnackbarSeverity}
+                        choosenDate={choosenDate}
+                        choosenRoom={choosenRoom}
+                        choosenTime={choosenTime}
+                        setChoosenDate={setChoosenDate}
+                        setChoosenRoom={setChoosenRoom}
+                        setChoosenTime={setChoosenTime}
+                        editBooking={editBooking}
+                        setEditBooking={setEditBooking}
+                        editBookingId={editBookingId}
                       />
                     }
                   />

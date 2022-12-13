@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+import { Avatar, Tooltip } from "@mui/material";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useSound from "use-sound";
+import dingSfx from "../assets/ding.mp3";
 import BasicSelect from "../components/BasicSelect";
 import BookinButton from "../components/BookinButton";
 import IconHelp from "../components/IconHelp";
-import AlertComponenet from "../components/PositionedSnackbar";
 import SubComponentsPickers from "../components/SubComponentsPickers";
 import TimeButton from "../components/TimeButton";
-import dingSfx from "../assets/ding.mp3";
-import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import { Avatar, Tooltip } from "@mui/material";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 export default function BookingPage({
   title,
@@ -19,19 +20,33 @@ export default function BookingPage({
   setIsSnackbarOpen,
   setSnackMessage,
   setSnackbarSeverity,
+  choosenDate,
+  choosenRoom,
+  choosenTime,
+  setChoosenDate,
+  setChoosenRoom,
+  setChoosenTime,
+  editBooking,
+  setEditBooking,
+  editBookingId,
 }) {
   /* Sets title */
   useEffect(() => {
     setTitle(title);
+
+    // Always set bookings values to "" when reloading
+    if (editBooking) {
+      // console.log("DU er ved at redigere din booking id" + editBookingId);
+    } else {
+      setChoosenRoom("");
+      setChoosenTime("");
+    }
   }, []);
 
   const navigate = useNavigate();
   const url =
     "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app";
 
-  const [choosenDate, setChoosenDate] = useState("");
-  const [choosenTime, setChoosenTime] = useState("");
-  const [choosenRoom, setChoosenRoom] = useState("");
   const [play] = useSound(dingSfx);
 
   const validateExistingBooking = async () => {
@@ -86,22 +101,47 @@ export default function BookingPage({
         if (activeUser.sound === true) {
           play();
         }
-        const response = await fetch(url + "/bookings" + ".json", {
-          method: "POST",
-          body: JSON.stringify(booking),
-        });
-        const result = response.json();
-        /* console.log(result); */
-        booking.id = result.name;
-        booking.key = result.name;
-        /* console.log("Document written with ID: ", booking.id); */
-        setBookings((previousValue) => {
-          return [...previousValue, booking];
-        });
+
+        if (editBooking) {
+          console.log("Du prøver at redigerer!");
+
+          const url =
+            "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app";
+          const response = await fetch(
+            url + "/" + "bookings" + "/" + editBookingId + ".json",
+            {
+              method: "PUT",
+              body: JSON.stringify(booking),
+            }
+          );
+          const result = response.json();
+          console.log(result);
+          setSnackMessage(
+            "Din redigering er bekræftet. Du viderestilles til dine bookninger."
+          );
+
+          // Sets the booking-page as default
+          setEditBooking(false);
+        } else {
+          const response = await fetch(url + "/bookings" + ".json", {
+            method: "POST",
+            body: JSON.stringify(booking),
+          });
+          const result = response.json();
+          /* console.log(result); */
+          /* We want the id from the server call */
+          booking.id = result.name;
+          booking.key = result.name;
+          /* console.log("Document written with ID: ", booking.id); */
+          setBookings((previousValue) => {
+            return [...previousValue, booking];
+          });
+          setSnackMessage(
+            "Din bookning er bekræftet. Du viderestilles til dine bookninger."
+          );
+        }
+
         setIsSnackbarOpen(true);
-        setSnackMessage(
-          "Din bookning er bekræftet. Du viderestilles til dine bookninger."
-        );
         setSnackbarSeverity("success");
 
         const delayInMilliseconds = 1000;
@@ -114,53 +154,66 @@ export default function BookingPage({
 
   return (
     <div className="row">
-        <div className="column">
-          <SubComponentsPickers setChoosenDate={setChoosenDate} />
-          {/* <StaticDatePickerLandscape /> */}
+      <div className="column">
+        <SubComponentsPickers setChoosenDate={setChoosenDate} />
+        {editBooking ? (
+          <span
+            style={{ textAlign: "left", fontWeight: "600", display: "flex" }}
+          >
+            <ErrorOutlineIcon style={{ marginRight: "6px" }} />
+            Du er ved at redigere booking id {editBookingId}
+            <HighlightOffIcon style={{ marginLeft: "6px" }} onClick={() => setEditBooking(false)} />
+          </span>
+        ) : (
+          ""
+        )}
+      </div>
+      <div className="column">
+        <div>
+          <h4 className="choose-title">Tidsinterval</h4>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <TimeButton
+              title="08.30 - 12.00"
+              value="0800-1200"
+              setChoosenTime={setChoosenTime}
+            ></TimeButton>
+            <TimeButton
+              title="12.30 - 16.00"
+              value="1230-1600"
+              setChoosenTime={setChoosenTime}
+            ></TimeButton>
+            <TimeButton
+              title="16.00 - 21.00"
+              value="1600-2100"
+              setChoosenTime={setChoosenTime}
+            ></TimeButton>
+          </div>
         </div>
-        <div className="column">
-          <div>
-            <h4 className="choose-title">Tidsinterval</h4>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <TimeButton
-                title="08.30 - 12.00"
-                value="0800-1200"
-                setChoosenTime={setChoosenTime}
-              ></TimeButton>
-              <TimeButton
-                title="12.30 - 16.00"
-                value="1230-1600"
-                setChoosenTime={setChoosenTime}
-              ></TimeButton>
-              <TimeButton
-                title="16.00 - 21.00"
-                value="1600-2100"
-                setChoosenTime={setChoosenTime}
-              ></TimeButton>
-            </div>
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+            <h4 className="choose-title">Ledige lokaler</h4>
+            <Tooltip title={<IconHelp />}>
+              <Avatar
+                sx={{
+                  bgcolor: "var(--success-color)",
+                  width: 24,
+                  height: 24,
+                  cursor: "help",
+                }}
+              >
+                <QuestionMarkIcon sx={{ fontSize: 16 }} />
+              </Avatar>
+            </Tooltip>
           </div>
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-              <h4 className="choose-title">Ledige lokaler</h4>
-              <Tooltip title={<IconHelp />}>
-                <Avatar
-                  sx={{
-                    bgcolor: "var(--success-color)",
-                    width: 24,
-                    height: 24,
-                    cursor: "help",
-                  }}
-                >
-                  <QuestionMarkIcon sx={{ fontSize: 16 }} />
-                </Avatar>
-              </Tooltip>
-            </div>
-            <BasicSelect setChoosenRoom={setChoosenRoom} label="Vælg lokale" />
-          </div>
-
+          <BasicSelect setChoosenRoom={setChoosenRoom} label="Vælg lokale" />
+        </div>
       </div>
       <div className="button-bottom">
-        <BookinButton onClick={handleClick} primary title="Bekræft" />
+        {editBooking ? (
+          <BookinButton onClick={handleClick} primary title="Redigér" />
+        ) : (
+          <BookinButton onClick={handleClick} primary title="Bekræft" />
+        )}
         <BookinButton
           onClick={() => navigate("/home")}
           secondary

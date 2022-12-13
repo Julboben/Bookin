@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import BookinButton from "../components/BookinButton";
 import SubComponentsPickers from "../components/SubComponentsPickers";
 import LoadingBookin from "../components/loading-bookin.gif";
-import { transformToArray, getData } from "../firebase-utils";
+import { getData } from "../firebase-utils";
 import YourBookingBox from "../components/YourBookingBox";
 import MultipleSelectNative from "../components/MultipleSelectNative";
 
@@ -16,6 +16,11 @@ export default function BookingOverview({
   setIsSnackbarOpen,
   setSnackMessage,
   setSnackbarSeverity,
+  setChoosenDate,
+  setChoosenRoom,
+  setChoosenTime,
+  setEditBooking,
+  setEditBookingId
 }) {
   // Sets title in header
   useEffect(() => {
@@ -24,17 +29,17 @@ export default function BookingOverview({
 
   const navigate = useNavigate();
 
-  const url =
-    "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app/bookings.json";
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [choosenDate, setChoosenDate] = useState("");
+  const [choosenOverviewDate, setChoosenOverviewDate] = useState("");
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setIsLoading(true);
 
     // Moved to firebase-utils
     /*     async function getData() {
+      const url =
+    "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app/bookings.json";
       const response = await fetch(url);
       // console.log(response);
       if (response.status === 200) {
@@ -80,13 +85,13 @@ export default function BookingOverview({
       ) : (
         <div className="row">
           <div className="column">
-            <SubComponentsPickers setChoosenDate={setChoosenDate} />
+            <SubComponentsPickers setChoosenDate={setChoosenOverviewDate} />
           </div>
           <div className="column">
             <div>
               <h4 className="choose-title">Mine bookninger</h4>
               {bookings
-                .filter((bookings) => bookings.date.includes(choosenDate))
+                .filter((bookings) => bookings.date.includes(choosenOverviewDate))
                 .map((booking) => {
                   return (
                     <YourBookingBox
@@ -98,6 +103,14 @@ export default function BookingOverview({
                       setIsSnackbarOpen={setIsSnackbarOpen}
                       setSnackMessage={setSnackMessage}
                       setSnackbarSeverity={setSnackbarSeverity}
+                      setIsError={setIsError}
+                      setBookings={setBookings}
+                      setIsLoading={setIsLoading}
+                      setChoosenDate={setChoosenDate}
+                      setChoosenTime={setChoosenTime}
+                      setChoosenRoom={setChoosenRoom}
+                      setEditBooking={setEditBooking}
+                      setEditBookingId={setEditBookingId}
                     />
                   );
                 })}
