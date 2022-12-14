@@ -7,7 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import OverviewPage from "./pages/OverviewPage";
 import NoMatch from "./pages/NoMatch";
 import BookingPage from "./pages/BookingPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SettingsPage from "./pages/SettingsPage";
 import Footer from "./components/Footer";
 import languageTranslate from "./components/languageTranslate.json";
@@ -20,7 +20,11 @@ import {
 function App() {
   // Title
   const [title, setTitle] = useState("");
+
+  // Bookings
   const [bookings, setBookings] = useState([]);
+
+  // ActiveUser
   const [activeUser, setActiveUser] = useState({});
 
   // Snackbar
@@ -44,6 +48,7 @@ function App() {
     setIsSnackbarOpen(false);
   };
 
+  // CSStransisition
   // Error with CSStransition: findDOMNode is deprecated in StrictMode!
   const location = useLocation();
 

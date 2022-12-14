@@ -157,13 +157,15 @@ export default function BookingPage({
       <div className="column">
         <SubComponentsPickers setChoosenDate={setChoosenDate} />
         {editBooking ? (
-          <span
-            style={{ textAlign: "left", fontWeight: "600", display: "flex" }}
-          >
-            <ErrorOutlineIcon style={{ marginRight: "6px" }} />
-            Du er ved at redigere booking id {editBookingId}
-            <HighlightOffIcon style={{ marginLeft: "6px" }} onClick={() => setEditBooking(false)} />
-          </span>
+          <div>
+            <span
+              style={{ textAlign: "left", fontWeight: "600", display: "flex" }}
+            >
+              <ErrorOutlineIcon style={{ marginRight: "6px" }} />
+              Du er ved at redigere booking id {editBookingId}
+            </span>
+            <BookinButton primary title="Fortryd redigering" onClick={() => setEditBooking(false)} />
+          </div>
         ) : (
           ""
         )}
@@ -210,7 +212,7 @@ export default function BookingPage({
       </div>
       <div className="button-bottom">
         {editBooking ? (
-          <BookinButton onClick={handleClick} primary title="Redigér" />
+          <BookinButton onClick={handleClick} primary title="Bekræft Redigering" />
         ) : (
           <BookinButton onClick={handleClick} primary title="Bekræft" />
         )}
