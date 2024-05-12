@@ -60,7 +60,7 @@ export default function BookinSwitch({
   setActiveUser,
   setIsSnackbarOpen,
   setSnackMessage,
-  setSnackbarSeverity
+  setSnackbarSeverity,
 }) {
   // console.log(activeUser.darkmode);
 
@@ -75,13 +75,10 @@ export default function BookinSwitch({
 
     const url =
       "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app";
-    const response = await fetch(
-      url + "/" + "users" + "/" + activeUser.id + "/" + id + ".json",
-      {
-        method: "PUT",
-        body: !isChecked,
-      }
-    );
+    const response = await fetch(`${url}/users/${activeUser.id}/${id}.json`, {
+      method: "PUT",
+      body: !isChecked,
+    });
 
     /* Fetches new activeUser property */
     // const userResponse = await fetch(
@@ -110,18 +107,15 @@ export default function BookinSwitch({
 
       // Snackbar
       let ToggleChecked = "";
-      if ( !isChecked ) {
+      if (!isChecked) {
         ToggleChecked = "til";
       } else {
-        ToggleChecked = "fra"
+        ToggleChecked = "fra";
       }
 
       setIsSnackbarOpen(true);
-      setSnackMessage(
-        name + " er slået " + ToggleChecked + "."
-      );
+      setSnackMessage(name + " er slået " + ToggleChecked + ".");
       setSnackbarSeverity("success");
-
     } else {
       console.log("Fejl!");
     }

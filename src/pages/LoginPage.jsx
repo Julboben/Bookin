@@ -14,7 +14,7 @@ export default function LoginPage({
   
   useEffect(() => {
     setTitle(title);
-  }, []);
+  }, [setTitle, title]);
 
   return (
     <>

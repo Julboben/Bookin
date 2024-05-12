@@ -7,7 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import OverviewPage from "./pages/OverviewPage";
 import NoMatch from "./pages/NoMatch";
 import BookingPage from "./pages/BookingPage";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SettingsPage from "./pages/SettingsPage";
 import Footer from "./components/Footer";
 import languageTranslate from "./components/languageTranslate.json";
@@ -118,7 +118,7 @@ function App() {
                     }
                   />
                   <Route
-                    path="/booking"
+                    path="/"
                     element={
                       <BookingPage
                         setBookings={setBookings}

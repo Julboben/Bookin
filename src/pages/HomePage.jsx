@@ -8,7 +8,7 @@ import calendar from "../assets/calendar.svg";
 export default function HomePage({ setTitle, title, firstname }) {
   useEffect(() => {
     setTitle(title);
-  }, []);
+  }, [setTitle, title]);
 
   return (
     <div className="row">

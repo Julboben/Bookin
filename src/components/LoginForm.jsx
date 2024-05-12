@@ -54,7 +54,7 @@ export default function LoginForm({
         const curl =
           "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app";
         const userResponse = await fetch(
-          curl + "/" + "users" + "/" + userId + ".json"
+          `${curl}/users/${userId}.json`
         );
         /* console.log(userResponse); */
         const userResult = await userResponse.json();

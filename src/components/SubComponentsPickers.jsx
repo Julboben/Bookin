@@ -16,7 +16,7 @@ export default function SubComponentsPickers({ setChoosenDate }) {
   React.useEffect(() => {
     setChoosenDate(dayjs().format("YYYY-MM-DD"));
     /* console.log(dayjs().format('YYYY-MM-DD')) */
-  }, []);
+  }, [setChoosenDate]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

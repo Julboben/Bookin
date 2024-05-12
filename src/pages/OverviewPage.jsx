@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BookinButton from "../components/BookinButton";
 import SubComponentsPickers from "../components/SubComponentsPickers";
@@ -20,12 +20,12 @@ export default function BookingOverview({
   setChoosenRoom,
   setChoosenTime,
   setEditBooking,
-  setEditBookingId
+  setEditBookingId,
 }) {
   // Sets title in header
   useEffect(() => {
     setTitle(title);
-  }, []);
+  }, [setTitle, title]);
 
   const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ export default function BookingOverview({
     setTimeout(function () {
       getData({ setIsError, setBookings, setIsLoading });
     }, delayInMilliseconds);
-  }, []);
+  }, [setBookings]);
 
   return (
     <div className="row">
@@ -72,6 +72,7 @@ export default function BookingOverview({
           }}
         >
           <img
+            alt="Loading"
             style={{ margin: "auto", alignSelf: "center" }}
             width={"200px"}
             src={LoadingBookin}
@@ -91,7 +92,9 @@ export default function BookingOverview({
             <div>
               <h4 className="choose-title">Mine bookninger</h4>
               {bookings
-                .filter((bookings) => bookings.date.includes(choosenOverviewDate))
+                .filter((bookings) =>
+                  bookings.date.includes(choosenOverviewDate)
+                )
                 .map((booking) => {
                   return (
                     <YourBookingBox

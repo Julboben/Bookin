@@ -1,5 +1,5 @@
 import { Divider } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BookinButton from "../components/BookinButton";
 import SettingsToggle from "../components/SettingsToggle";
@@ -21,7 +21,7 @@ export default function SettingsPage({
   /* Sets the title */
   useEffect(() => {
     setTitle(title);
-  }, []);
+  }, [setTitle, title]);
 
   const handleLogout = () => {
     navigate("/");

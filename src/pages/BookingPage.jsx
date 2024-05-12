@@ -10,7 +10,6 @@ import IconHelp from "../components/IconHelp";
 import SubComponentsPickers from "../components/SubComponentsPickers";
 import TimeButton from "../components/TimeButton";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 export default function BookingPage({
   title,
@@ -41,7 +40,7 @@ export default function BookingPage({
       setChoosenRoom("");
       setChoosenTime("");
     }
-  }, []);
+  }, [editBooking, setChoosenRoom, setChoosenTime, setTitle, title]);
 
   const navigate = useNavigate();
   const url =
@@ -52,7 +51,7 @@ export default function BookingPage({
   const validateExistingBooking = async () => {
     // Starte med at kigge på alle de eksisterende.
     // bookings.filter()
-    const response = await fetch(url + "/bookings" + ".json");
+    const response = await fetch(`${url}/bookings.json`);
     const body = await response.json();
     /* console.log(body) */
     const bookingArray = Object.values(body);
@@ -108,7 +107,7 @@ export default function BookingPage({
           const url =
             "https://bookin-89f49-default-rtdb.europe-west1.firebasedatabase.app";
           const response = await fetch(
-            url + "/" + "bookings" + "/" + editBookingId + ".json",
+            `${url}/bookings/${editBookingId}.json`,
             {
               method: "PUT",
               body: JSON.stringify(booking),
@@ -123,7 +122,7 @@ export default function BookingPage({
           // Sets the booking-page as default
           setEditBooking(false);
         } else {
-          const response = await fetch(url + "/bookings" + ".json", {
+          const response = await fetch(`${url}/bookings.json`, {
             method: "POST",
             body: JSON.stringify(booking),
           });
@@ -164,7 +163,11 @@ export default function BookingPage({
               <ErrorOutlineIcon style={{ marginRight: "6px" }} />
               Du er ved at redigere booking id {editBookingId}
             </span>
-            <BookinButton primary title="Fortryd redigering" onClick={() => setEditBooking(false)} />
+            <BookinButton
+              primary
+              title="Fortryd redigering"
+              onClick={() => setEditBooking(false)}
+            />
           </div>
         ) : (
           ""
@@ -212,7 +215,11 @@ export default function BookingPage({
       </div>
       <div className="button-bottom">
         {editBooking ? (
-          <BookinButton onClick={handleClick} primary title="Bekræft Redigering" />
+          <BookinButton
+            onClick={handleClick}
+            primary
+            title="Bekræft Redigering"
+          />
         ) : (
           <BookinButton onClick={handleClick} primary title="Bekræft" />
         )}
