@@ -12,10 +12,7 @@ import SettingsPage from "./pages/SettingsPage";
 import Footer from "./components/Footer";
 import languageTranslate from "./components/languageTranslate.json";
 import AlertComponenet from "./components/PositionedSnackbar";
-import {
-  CSSTransition,
-  SwitchTransition,
-} from "react-transition-group";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 function App() {
   // Title
@@ -39,7 +36,7 @@ function App() {
 
   // useState for editing bookings
   const [editBooking, setEditBooking] = useState(false);
-  const [editBookingId, setEditBookingId] = useState ("")
+  const [editBookingId, setEditBookingId] = useState("");
 
   const handleClose = (reason) => {
     if (reason === "clickaway") {
@@ -80,6 +77,33 @@ function App() {
                     }
                   />
                   <Route
+                    path="/"
+                    element={
+                      <BookingPage
+                        setBookings={setBookings}
+                        title={
+                          activeUser.lang
+                            ? languageTranslate["NEW-BOOKING"].dk
+                            : languageTranslate["NEW-BOOKING"].eng
+                        }
+                        setTitle={setTitle}
+                        activeUser={activeUser}
+                        setIsSnackbarOpen={setIsSnackbarOpen}
+                        setSnackMessage={setSnackMessage}
+                        setSnackbarSeverity={setSnackbarSeverity}
+                        choosenDate={choosenDate}
+                        choosenRoom={choosenRoom}
+                        choosenTime={choosenTime}
+                        setChoosenDate={setChoosenDate}
+                        setChoosenRoom={setChoosenRoom}
+                        setChoosenTime={setChoosenTime}
+                        editBooking={editBooking}
+                        setEditBooking={setEditBooking}
+                        editBookingId={editBookingId}
+                      />
+                    }
+                  />
+                  <Route
                     path="/home"
                     element={
                       <HomePage
@@ -114,33 +138,6 @@ function App() {
                         setChoosenTime={setChoosenTime}
                         setEditBooking={setEditBooking}
                         setEditBookingId={setEditBookingId}
-                      />
-                    }
-                  />
-                  <Route
-                    path="/"
-                    element={
-                      <BookingPage
-                        setBookings={setBookings}
-                        title={
-                          activeUser.lang
-                            ? languageTranslate["NEW-BOOKING"].dk
-                            : languageTranslate["NEW-BOOKING"].eng
-                        }
-                        setTitle={setTitle}
-                        activeUser={activeUser}
-                        setIsSnackbarOpen={setIsSnackbarOpen}
-                        setSnackMessage={setSnackMessage}
-                        setSnackbarSeverity={setSnackbarSeverity}
-                        choosenDate={choosenDate}
-                        choosenRoom={choosenRoom}
-                        choosenTime={choosenTime}
-                        setChoosenDate={setChoosenDate}
-                        setChoosenRoom={setChoosenRoom}
-                        setChoosenTime={setChoosenTime}
-                        editBooking={editBooking}
-                        setEditBooking={setEditBooking}
-                        editBookingId={editBookingId}
                       />
                     }
                   />
