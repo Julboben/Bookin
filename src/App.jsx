@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div>
-      <div className="wrapper">
+      <div className="container">
         <TheHeader title={title} firstname={activeUser.firstname} />
         <main>
           <div className={`content ${activeUser.darkmode ? "darkmode" : ""}`}>

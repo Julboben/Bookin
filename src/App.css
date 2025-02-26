@@ -1,16 +1,16 @@
 :root {
   /* Frequently used styling */
-  --primary-color: #96D3DE;
-  --secondary-color: #F89B30;
+  --primary-color: #96d3de;
+  --secondary-color: #f89b30;
   --light-color: white;
-  --dark-color: #3F3F3F;
-  --muted-color: #E6E7E8;
+  --dark-color: #3f3f3f;
+  --muted-color: #e6e7e8;
   --danger-color: orange;
   --success-color: orange;
-  --info-color: #96D3DE;
-  --muted-primary-color: #CAE8EE;
+  --info-color: #96d3de;
+  --muted-primary-color: #cae8ee;
   --transistion: 0.1s;
-  --primary-font: 'Poppins', Helvetica, sans-serif;
+  --primary-font: "Poppins", Helvetica, sans-serif;
 }
 
 * {
@@ -27,20 +27,32 @@ html {
   /* Should change depending on DarkMode true or false */
 }
 
-.wrapper {
+.site_icon {
+  display: inline-block;
+  padding: 2px;
+}
+
+.container {
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  padding-inline: 5px;
+
+  @media (min-width: 768px) {
+    padding-inline: 30px;
+  }
 }
 
 .content {
   border-radius: 6px;
   background-color: var(--light-color);
-  padding: 30px;
+  padding: 10px;
   min-height: 600px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+
+  @media (min-width: 768px) {
+    padding: 30px;
+  }
 }
 
 .darkmode.content {
@@ -57,10 +69,14 @@ html {
 }
 
 .darkmode .css-b6lsxj-MuiButtonBase-root-MuiCardActionArea-root h3 {
-  color: var(--dark-color)!important;
+  color: var(--dark-color) !important;
 }
 
-.darkmode p, .darkmode h1, .darkmode h2, .darkmode h3, .darkmode h4 {
+.darkmode p,
+.darkmode h1,
+.darkmode h2,
+.darkmode h3,
+.darkmode h4 {
   color: white;
 }
 
@@ -102,6 +118,14 @@ ul {
   list-style: none;
 }
 
+.page_title {
+  font-size: 1rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.4rem;
+  }
+}
+
 /* Headings */
 h1 {
   text-transform: uppercase;
@@ -109,7 +133,6 @@ h1 {
   font-family: var(--primary-font);
   margin: 0;
   font-size: 1.4rem;
-  line-height: 1;
   font-weight: 500;
 }
 
@@ -126,7 +149,6 @@ h3 {
   font-size: 2.4rem;
   font-weight: 500;
   text-transform: uppercase;
-  line-height: 2.4rem;
 }
 
 h4 {
@@ -134,7 +156,6 @@ h4 {
   font-family: var(--primary-font);
   font-size: 16px;
   font-weight: 700;
-  line-height: 0;
 }
 
 .card-title {
@@ -261,7 +282,7 @@ h4 {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  gap: 10px ;
+  gap: 10px;
   padding: 10px;
 }
 
@@ -305,7 +326,17 @@ h4 {
 
 /* Loading */
 
-@keyframes blink {50% { color: transparent }}
-.loader__dot { animation: 1s blink infinite }
-.loader__dot:nth-child(2) { animation-delay: 250ms }
-.loader__dot:nth-child(3) { animation-delay: 500ms }
+@keyframes blink {
+  50% {
+    color: transparent;
+  }
+}
+.loader__dot {
+  animation: 1s blink infinite;
+}
+.loader__dot:nth-child(2) {
+  animation-delay: 250ms;
+}
+.loader__dot:nth-child(3) {
+  animation-delay: 500ms;
+}

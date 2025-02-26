@@ -1,13 +1,10 @@
-header {
-    background-color: var(--primary-color);
-    padding: 10px 30px;
+.header {
+  background-color: var(--primary-color);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: end;
 }
 
-/* header > div {
-    flex-grow: 1;
-    width: 0;
+.header > * {
+  grid-column: span 4;
 }
-
-header div {
-    align-self: flex-end;
-} */
