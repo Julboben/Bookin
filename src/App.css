@@ -34,6 +34,7 @@ html {
 
 .container {
   max-width: 1200px;
+  margin-inline: auto;
   padding-inline: 5px;
 
   @media (min-width: 768px) {
