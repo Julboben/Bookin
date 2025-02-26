@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Bookin/static/css/main.17873f2e.css",
+    "main.css": "/Bookin/static/css/main.df95b4c0.css",
     "main.js": "/Bookin/static/js/main.d950fac7.js",
     "static/js/845.a7af5a29.chunk.js": "/Bookin/static/js/845.a7af5a29.chunk.js",
     "static/js/787.22cf53f4.chunk.js": "/Bookin/static/js/787.22cf53f4.chunk.js",
@@ -13,13 +13,13 @@
     "static/media/calendar.svg": "/Bookin/static/media/calendar.7b18e7b03698e10d7551e48101a1fd43.svg",
     "static/media/flag.svg": "/Bookin/static/media/flag.165363d8d62dd5babd800c052e24425d.svg",
     "index.html": "/Bookin/index.html",
-    "main.17873f2e.css.map": "/Bookin/static/css/main.17873f2e.css.map",
+    "main.df95b4c0.css.map": "/Bookin/static/css/main.df95b4c0.css.map",
     "main.d950fac7.js.map": "/Bookin/static/js/main.d950fac7.js.map",
     "845.a7af5a29.chunk.js.map": "/Bookin/static/js/845.a7af5a29.chunk.js.map",
     "787.22cf53f4.chunk.js.map": "/Bookin/static/js/787.22cf53f4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.17873f2e.css",
+    "static/css/main.df95b4c0.css",
     "static/js/main.d950fac7.js"
   ]
 }
